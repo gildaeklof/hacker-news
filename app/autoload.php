@@ -18,4 +18,4 @@ require __DIR__ . '/functions.php';
 $config = require __DIR__ . '/config.php';
 
 // Setup the database connection.
-$pdo = new PDO($config['database_path']);
+$database = new PDO($config['database_path']);

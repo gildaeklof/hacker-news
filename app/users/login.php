@@ -9,7 +9,7 @@ if (isset($_POST['current-email'], $_POST['current-password'])) {
     $email = filter_var($_POST['current-email'], FILTER_SANITIZE_EMAIL);
 
     // Prepare, bind email parameter and execute the database query.
-    $statement = $pdo->prepare('SELECT * FROM users WHERE email = :email');
+    $statement = $database->prepare('SELECT * FROM users WHERE email = :email');
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->execute();
 

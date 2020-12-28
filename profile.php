@@ -4,6 +4,10 @@
 <article>
     <h1>Update your account</h1>
 
+    <?php if (isset($_SESSION['user'])) : ?>
+        <p>Welcome, <?php echo $_SESSION['user']['username']; ?>!</p>
+    <?php endif; ?>
+
     <form action="/app/users/updateprofile.php" method="post">
         <div class="form-group">
             <label for="new-email">Change email</label>
@@ -28,6 +32,10 @@
             <small class="form-text text-muted">Please confirm your new password.</small>
         </div><!-- /form-group -->
 
+        <div class="form-group">
+            <label for="new-bio">Update bio</label>
+            <input class="form-control" type="text" name="new-bio" id="bio" required>
+        </div><!-- /form-group -->
         <button type="submit" class="btn btn-dark">Update account</button>
 
     </form>
