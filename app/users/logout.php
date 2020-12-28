@@ -1,6 +1,10 @@
-<?php require __DIR__ . '/app/autoload.php'; ?>
-<?php require __DIR__ . '/sections/header.php'; ?>
+<?php
 
+declare(strict_types=1);
 
+require __DIR__ . '/../autoload.php';
 
-<?php require __DIR__ . '/sections/footer.php'; ?>
+// Remove the user session variable and redirect the user back to the homepage.
+unset($_SESSION['user']);
+
+redirect('/index.php');
