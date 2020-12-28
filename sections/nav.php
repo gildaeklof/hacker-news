@@ -19,7 +19,7 @@
 
         <li class="nav-item">
             <?php if (isset($_SESSION['user'])) : ?>
-                <a class="nav-link" href="/app/users/updateprofile.php">Profile</a>
+                <a class="nav-link" href="/profile.php">Profile</a>
             <?php else : ?>
                 <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/login.php' ? 'active' : ''; ?>" href="login.php">Profile</a>
             <?php endif; ?>
