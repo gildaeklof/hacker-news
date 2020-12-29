@@ -8,7 +8,7 @@
         <div class="form-group">
             <label for="current-email">Email</label>
             <input class="form-control" type="email" name="current-email" id="email" placeholder="" required>
-            <small class="form-text text-muted">Please provide the your email address.</small>
+            <small class="form-text text-muted">Please provide your email address.</small>
         </div><!-- /form-group -->
 
         <div class="form-group">
@@ -19,8 +19,8 @@
 
         <button type="submit" class="btn btn-dark" name="login_user">Login</button>
         <small class="form-text text-muted">Don't have an account?</small>
-        <a class="btn btn-dark" href="/newaccount.php" role="button">Create a new account</a>
     </form>
+    <a class="btn btn-dark" href="/newaccount.php" role="button">Create a new account</a>
 </article>
 
 <?php require __DIR__ . '/sections/footer.php'; ?>
