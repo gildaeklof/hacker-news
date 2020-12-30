@@ -63,7 +63,7 @@ function regUser($database, $email, $username, $password, $bio)
 function alert()
 {
     if (isset($_SESSION['errors'])) {
-        foreach ($_SESSION['errors'] as $error) {
+        foreach ((array)$_SESSION['errors'] as $error) {
             echo $error;
         }
     }

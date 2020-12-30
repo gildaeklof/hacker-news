@@ -31,7 +31,6 @@ if (isset($_POST['new-email'], $_POST['new-username'], $_POST['new-password-1'],
     }
 
     existUsername($database, $username);
-
     if ($_SESSION['usernameexist']['username'] === $username) {
 
         $_SESSION['errors'][] = "The username is taken.";

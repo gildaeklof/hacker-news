@@ -16,9 +16,15 @@ if (isset($_POST['current-email'], $_POST['current-password'])) {
     // Fetch the user as an associative array.
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
+    $_SESSION['login']['current-email'] = $email;
+    $_SESSION['login']['current-password'] = $password;
+
+
     // If we couldn't find the user in the database, redirect back to the login
     // page with our custom redirect function.
     if (!$user) {
+        $_SESSION['errors'] = "The email is not registered.";
+        unset($_SESSION['login']['current-email']);
         redirect('/login.php');
     }
 
@@ -29,10 +35,13 @@ if (isset($_POST['current-email'], $_POST['current-password'])) {
         // the correct password. We can now save the user in our session.
         // Remember to not save the password in the session!
         unset($user['password']);
-
         $_SESSION['user'] = $user;
+    } else {
+        $_SESSION['errors'] = "Incorrect password.";
+        redirect('/login.php');
     }
 }
+unset($_SESSION['login']);
 
 // We should put this redirect in the end of this file since we always want to
 // redirect the user back from this file. We don't know
