@@ -51,6 +51,13 @@ function regUser($database, $email, $username, $password, $bio)
     $statement->bindParam(':password', $passwordEncrypt, PDO::PARAM_STR);
     $statement->bindParam(':bio', $bio, PDO::PARAM_STR);
     $statement->execute();
+
+    //logs in after registration
+    $statement = $database->prepare('SELECT * FROM users WHERE email = :email');
+    $statement->bindParam(':email', $email, PDO::PARAM_STR);
+    $statement->execute();
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
+    $_SESSION['user'] = $user;
 }
 
 function alert()

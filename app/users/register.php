@@ -50,4 +50,4 @@ if (isset($_POST['new-email'], $_POST['new-username'], $_POST['new-password-1'],
     unset($_SESSION['register']);
 }
 
-redirect('/login.php');
+redirect('/index.php');
