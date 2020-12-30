@@ -1,16 +1,9 @@
 <?php require __DIR__ . '/app/autoload.php'; ?>
 <?php require __DIR__ . '/sections/header.php'; ?>
-
 <article>
     <h1>Create a new account</h1>
+    <p class="error"><?php alert(); ?></p>
     <!--remove errors somehow? and somehow display appropriately-->
-    <div>
-        <?php if (isset($_SESSION['errors'])) : ?>
-            <p class="error"> <?php alert();
-                                unset($_SESSION['errors']); ?></p>
-        <?php endif; ?>
-    </div>
-
     <form action="/app/users/register.php" method="post">
         <div class="form-group">
             <label for="new-email">Email</label>

@@ -3,14 +3,7 @@
 
 <article>
     <h1>Login</h1>
-
-    <div>
-        <?php if (isset($_SESSION['errors'])) : ?>
-            <p class="error"> <?php alert();
-                                unset($_SESSION['errors']); ?></p>
-        <?php endif; ?>
-    </div>
-
+    <p class="error"><?php alert(); ?></p>
     <form action="app/users/login.php" method="post">
         <div class="form-group">
             <label for="current-email">Email</label>

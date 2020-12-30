@@ -8,6 +8,7 @@ function redirect(string $path)
     exit;
 }
 
+//register functions
 function existEmail($database, $email)
 {
     $emailQuery = 'SELECT * FROM users WHERE email= :email';
@@ -52,7 +53,7 @@ function regUser($database, $email, $username, $password, $bio)
     $statement->bindParam(':bio', $bio, PDO::PARAM_STR);
     $statement->execute();
 
-    //logs in after registration
+    //logs in user after registration
     $statement = $database->prepare('SELECT * FROM users WHERE email = :email');
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->execute();
@@ -60,11 +61,59 @@ function regUser($database, $email, $username, $password, $bio)
     $_SESSION['user'] = $user;
 }
 
+//update functions
+//
+//
+function getUserId($database, $id)
+{
+    $query = 'SELECT * FROM users WHERE id = :id';
+    $statement = $database->prepare($query);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
+    if ($user) {
+        return $user;
+    } else {
+        return [];
+    }
+}
+
+//need to check if email already exists
+function changeEmail($database, $id, $email)
+{
+    $query = 'UPDATE users SET email = :email WHERE id = :id';
+    $statement = $database->prepare($query);
+    $statement->bindParam(':email', $email, PDO::PARAM_STR);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+}
+
+function changeBio($database, $id, $bio)
+{
+    $query = 'UPDATE users SET bio = :bio WHERE id = :id';
+    $statement = $database->prepare($query);
+    $statement->bindParam(':bio', $bio, PDO::PARAM_STR);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+}
+
+//need to check if username already exists
+function changeUsername($database, $id, $username)
+{
+    $query = 'UPDATE users SET username = :username WHERE id = :id';
+    $statement = $database->prepare($query);
+    $statement->bindParam(':username', $username, PDO::PARAM_STR);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+}
+
+//error function
 function alert()
 {
     if (isset($_SESSION['errors'])) {
         foreach ((array)$_SESSION['errors'] as $error) {
             echo $error;
+            unset($_SESSION['errors']);
         }
     }
 }

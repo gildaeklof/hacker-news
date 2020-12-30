@@ -25,7 +25,7 @@ if (isset($_POST['new-email'], $_POST['new-username'], $_POST['new-password-1'],
     existEmail($database, $email);
     if ($_SESSION['emailexist']['email'] === $email) {
 
-        $_SESSION['errors'][] = "The email is already registered.";
+        $_SESSION['errors'] = "The email is already registered.";
         unset($_SESSION['register']['new-email']);
         redirect('/../newaccount.php');
     }
@@ -33,13 +33,13 @@ if (isset($_POST['new-email'], $_POST['new-username'], $_POST['new-password-1'],
     existUsername($database, $username);
     if ($_SESSION['usernameexist']['username'] === $username) {
 
-        $_SESSION['errors'][] = "The username is taken.";
+        $_SESSION['errors'] = "The username is taken.";
         unset($_SESSION['register']['new-username']);
         redirect('/../newaccount.php');
     }
 
     if ($password !== $passwordConf) {
-        $_SESSION['errors'][] = "The passwords do not match.";
+        $_SESSION['errors'] = "The passwords do not match.";
         unset($_SESSION['register']['new-password-1'], $_SESSION['register']['new-password-2']);
 
         redirect('/../newaccount.php');
