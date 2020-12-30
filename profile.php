@@ -14,11 +14,16 @@ $user = getUserId($database, $id);
         <h5>Bio: <br><?php echo $user['bio']; ?></h5>
     <?php endif; ?>
     <br>
-    <p class="success"><?php alert(); ?></p>
+    <p class="error"><?php alert(); ?></p>
     <form action="/app/users/updateprofile.php" method="post">
         <div class="form-group">
             <label for="new-email">Change email</label>
-            <input class="form-control" type="email" name="update-email" id="email" placeholder="">
+            <input class="form-control" type="email" name="update-email" id="email" value="<?php
+                                                                                            if (isset($_SESSION['update']['update-email'])) {
+                                                                                                echo $_SESSION['update']['update-email'];
+                                                                                                unset($_SESSION['update']['update-email']);
+                                                                                            }
+                                                                                            ?>">
             <small class="form-text text-muted">Please provide a new email address.</small>
             <button type="submit" class="btn btn-dark">Update email</button>
         </div><!-- /form-group -->
@@ -27,7 +32,12 @@ $user = getUserId($database, $id);
     <form action="/app/users/updateprofile.php" method="post">
         <div class="form-group">
             <label for="new-username">Change username</label>
-            <input class="form-control" type="username" name="update-username" id="username" placeholder="">
+            <input class="form-control" type="username" name="update-username" id="username" value="<?php
+                                                                                                    if (isset($_SESSION['update']['update-username'])) {
+                                                                                                        echo $_SESSION['update']['update-username'];
+                                                                                                        unset($_SESSION['update']['update-username']);
+                                                                                                    }
+                                                                                                    ?>">
             <small class="form-text text-muted">Please choose a new username.</small>
             <button type="submit" class="btn btn-dark">Update username</button>
         </div>
@@ -36,7 +46,12 @@ $user = getUserId($database, $id);
     <form action="/app/users/updateprofile.php" method="post">
         <div class="form-group">
             <label for="new-bio">Update bio</label>
-            <input class="form-control" type="text" name="update-bio" id="bio">
+            <input class="form-control" type="text" name="update-bio" id="bio" value="<?php
+                                                                                        if (isset($_SESSION['update']['update-bio'])) {
+                                                                                            echo $_SESSION['update']['update-bio'];
+                                                                                            unset($_SESSION['update']['update-bio']);
+                                                                                        }
+                                                                                        ?>">
             <small class="form-text text-muted">Tell us something about yourself!</small>
             <button type="submit" class="btn btn-dark">Update bio</button>
         </div><!-- /form-group -->
