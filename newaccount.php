@@ -14,23 +14,23 @@
     <form action="/app/users/register.php" method="post">
         <div class="form-group">
             <label for="new-email">Email</label>
-            <input class="form-control" type="email" name="new-email" id="email" placeholder="" value="<?php
-                                                                                                        if (isset($_SESSION['register']['new-email'])) {
-                                                                                                            echo $_SESSION['register']['new-email'];
-                                                                                                            unset($_SESSION['register']['new-email']);
-                                                                                                        }
-                                                                                                        ?>" required>
+            <input class="form-control" type="email" name="new-email" id="email" value="<?php
+                                                                                        if (isset($_SESSION['register']['new-email'])) {
+                                                                                            echo $_SESSION['register']['new-email'];
+                                                                                            unset($_SESSION['register']['new-email']);
+                                                                                        }
+                                                                                        ?>" required>
             <small class="form-text text-muted">Please provide an email address.</small>
         </div><!-- /form-group -->
 
         <div class="form-group">
             <label for="new-username">Username</label>
-            <input class="form-control" type="username" name="new-username" id="username" placeholder="" value="<?php
-                                                                                                                if (isset($_SESSION['register']['new-username'])) {
-                                                                                                                    echo $_SESSION['register']['new-username'];
-                                                                                                                    unset($_SESSION['register']['new-username']);
-                                                                                                                }
-                                                                                                                ?>" required>
+            <input class="form-control" type="username" name="new-username" id="username" value="<?php
+                                                                                                    if (isset($_SESSION['register']['new-username'])) {
+                                                                                                        echo $_SESSION['register']['new-username'];
+                                                                                                        unset($_SESSION['register']['new-username']);
+                                                                                                    }
+                                                                                                    ?>" required>
             <small class="form-text text-muted">Please choose a username.</small>
         </div>
         <div class="form-group">
