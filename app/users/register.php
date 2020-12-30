@@ -14,6 +14,12 @@ if (isset($_POST['new-email'], $_POST['new-username'], $_POST['new-password-1'],
     $bio = $_POST['new-bio'];
 
     $_SESSION['errors'] = [];
+    $_SESSION['register']['new-email'] = $email;
+    $_SESSION['register']['new-username'] = $username;
+    $_SESSION['register']['new-password-1'] = $password;
+    $_SESSION['register']['new-password-2'] = $passwordConf;
+    $_SESSION['register']['new-bio'] = $bio;
+
 
 
     existEmail($database, $email);
