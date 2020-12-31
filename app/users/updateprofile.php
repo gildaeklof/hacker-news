@@ -49,10 +49,14 @@ if (isset($_POST['update-username'])) {
 if (isset($_POST['update-bio'])) {
     $bio = filter_var($_POST['update-bio'], FILTER_SANITIZE_STRING);
     $_SESSION['update']['update-bio'] = $bio;
-
-    changeBio($database, $id, $bio);
-    $_SESSION['errors'] = "Your bio was updated.";
-    redirect('/profile.php');
+    if (strlen($bio) <= 250) {
+        changeBio($database, $id, $bio);
+        $_SESSION['errors'] = "Your bio was updated.";
+        redirect('/profile.php');
+    } else {
+        $_SESSION['errors'] = "Your bio can be a maximum of 250 characters.";
+        redirect('/profile.php');
+    }
 }
 
 //update password
