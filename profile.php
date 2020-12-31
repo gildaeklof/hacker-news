@@ -57,7 +57,7 @@ $user = getUserId($database, $id);
         </div><!-- /form-group -->
     </form>
     <br>
-    <form action="/app/users/updatepassword.php" method="post">
+    <form action="/app/users/updateprofile.php" method="post">
         <div class="form-group">
             <label for="new-password-1">Change password</label>
             <input class="form-control" type="password" name="update-password-1" id="password">

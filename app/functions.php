@@ -107,6 +107,17 @@ function changeUsername($database, $id, $username)
     $statement->execute();
 }
 
+function changePassword($database, $id, $password)
+{
+    $query = 'UPDATE users SET password = :password WHERE id = :id';
+    $statement = $database->prepare($query);
+
+    $passwordEncrypt = password_hash($password, PASSWORD_BCRYPT);
+    $statement->bindParam(':password', $passwordEncrypt, PDO::PARAM_STR);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+}
+
 //error function
 function alert()
 {

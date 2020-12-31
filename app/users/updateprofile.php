@@ -28,7 +28,7 @@ if (isset($_POST['update-email'])) {
 
 //update username
 if (isset($_POST['update-username'])) {
-    $username = filter_var($_POST['update-username'], FILTER_SANITIZE_EMAIL);
+    $username = filter_var($_POST['update-username'], FILTER_SANITIZE_STRING);
 
     $_SESSION['errors'] = [];
     $_SESSION['update']['update-username'] = $username;
@@ -48,9 +48,29 @@ if (isset($_POST['update-username'])) {
 //update bio
 if (isset($_POST['update-bio'])) {
     $bio = filter_var($_POST['update-bio'], FILTER_SANITIZE_STRING);
+    $_SESSION['update']['update-bio'] = $bio;
+
     changeBio($database, $id, $bio);
     $_SESSION['errors'] = "Your bio was updated.";
     redirect('/profile.php');
 }
 
-redirect('/profile.php');
+//update password
+if (isset($_POST['update-password-1'], $_POST['update-password-2'])) {
+    $password = $_POST['update-password-1'];
+    $passwordConf = $_POST['update-password-2'];
+
+    $_SESSION['update']['update-password-1'] = $password;
+    $_SESSION['update']['update-password-2'] = $passwordConf;
+
+    if ($password !== $passwordConf) {
+        $_SESSION['errors'] = "The passwords do not match.";
+        unset($_SESSION['update']['update-password-1'], $_SESSION['update']['update-password-2']);
+
+        redirect('/profile.php');
+    }
+    changePassword($database, $id, $password);
+    $_SESSION['errors'] = "Your password was updated";
+    unset($_SESSION['update']);
+    redirect('/profile.php');
+}
