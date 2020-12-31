@@ -50,12 +50,12 @@
 
         <div class="form-group">
             <label for="new-bio">Biography</label>
-            <input class="form-control" type="text" name="new-bio" id="bio" value="<?php
+            <textarea class="form-control" rows="3" name="new-bio" id="bio" value="<?php
                                                                                     if (isset($_SESSION['register']['new-bio'])) {
                                                                                         echo $_SESSION['register']['new-bio'];
                                                                                         unset($_SESSION['register']['new-bio']);
                                                                                     }
-                                                                                    ?>">
+                                                                                    ?>"></textarea>
             <small class="form-text text-muted">Tell us something about yourself! You can update your bio later.</small>
         </div><!-- /form-group -->
 

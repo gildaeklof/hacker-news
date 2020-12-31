@@ -46,12 +46,12 @@ $user = getUserId($database, $id);
     <form action="/app/users/updateprofile.php" method="post">
         <div class="form-group">
             <label for="new-bio">Update bio</label>
-            <input class="form-control" type="text" name="update-bio" id="bio" value="<?php
+            <textarea class="form-control" rows="3" name="update-bio" id="bio" value="<?php
                                                                                         if (isset($_SESSION['update']['update-bio'])) {
                                                                                             echo $_SESSION['update']['update-bio'];
                                                                                             unset($_SESSION['update']['update-bio']);
                                                                                         }
-                                                                                        ?>">
+                                                                                        ?>"></textarea>
             <small class="form-text text-muted">Tell us something about yourself!</small>
             <button type="submit" class="btn btn-dark">Update bio</button>
         </div><!-- /form-group -->
@@ -69,6 +69,15 @@ $user = getUserId($database, $id);
             <input class="form-control" type="password" name="update-password-2" id="password">
             <small class="form-text text-muted">Please confirm your new password.</small>
             <button type="submit" class="btn btn-dark">Update password</button>
+        </div><!-- /form-group -->
+    </form>
+    <br>
+    <h4>DANGER ZONE</h4>
+    <form action="/app/users/deleteuser.php" method="post">
+        <div class="form-group">
+            <label for="delete-user">Delete account</label>
+            <small class="form-text text-muted">Are you sure you want to delete your account? There's no going back from this.</small>
+            <button type="submit" class="btn btn-danger">Delete account</button>
         </div><!-- /form-group -->
     </form>
 </article>

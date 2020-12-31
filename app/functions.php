@@ -63,7 +63,7 @@ function regUser($database, $email, $username, $password, $bio)
 
 //update functions
 //
-//
+//fetch user by id
 function getUserId($database, $id)
 {
     $query = 'SELECT * FROM users WHERE id = :id';
@@ -78,7 +78,7 @@ function getUserId($database, $id)
     }
 }
 
-//need to check if email already exists
+//update email
 function changeEmail($database, $id, $email)
 {
     $query = 'UPDATE users SET email = :email WHERE id = :id';
@@ -88,6 +88,7 @@ function changeEmail($database, $id, $email)
     $statement->execute();
 }
 
+//update bio
 function changeBio($database, $id, $bio)
 {
     $query = 'UPDATE users SET bio = :bio WHERE id = :id';
@@ -97,7 +98,7 @@ function changeBio($database, $id, $bio)
     $statement->execute();
 }
 
-//need to check if username already exists
+//update username
 function changeUsername($database, $id, $username)
 {
     $query = 'UPDATE users SET username = :username WHERE id = :id';
@@ -107,6 +108,7 @@ function changeUsername($database, $id, $username)
     $statement->execute();
 }
 
+//update password
 function changePassword($database, $id, $password)
 {
     $query = 'UPDATE users SET password = :password WHERE id = :id';
@@ -114,6 +116,16 @@ function changePassword($database, $id, $password)
 
     $passwordEncrypt = password_hash($password, PASSWORD_BCRYPT);
     $statement->bindParam(':password', $passwordEncrypt, PDO::PARAM_STR);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+}
+
+//delete account
+function deleteUser($database, $id)
+{
+    $id = $_SESSION['user']['id'];
+    $query = 'DELETE FROM users WHERE id = :id';
+    $statement = $database->prepare($query);
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
     $statement->execute();
 }
