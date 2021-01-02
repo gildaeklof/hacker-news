@@ -13,3 +13,7 @@ input[type="email"]:invalid {
 .success {
   color: green;
 }
+
+.card {
+  margin: 10px;
+}

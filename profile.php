@@ -4,14 +4,13 @@
 $id = $_SESSION['user']['id'];
 $user = getUserId($database, $id);
 ?>
-
-<article>
-    <h1>Your profile</h1>
-    <br>
-    <?php if (isset($_SESSION['user'])) : ?>
-        <h5>Email: <br><?php echo $user['email']; ?></h5>
-        <h5>Username: <br><?php echo $user['username']; ?></h5>
-        <h5>Bio: <br><?php echo $user['bio']; ?></h5>
+<?php if (isset($_SESSION['user'])) : ?>
+    <article>
+        <h1><?= $user['username']; ?>'s profile</h1>
+        <br>
+        <h5>Email: <br><?= $user['email']; ?></h5>
+        <h5>Username: <br><?= $user['username']; ?></h5>
+        <h5>Bio: <br><?= $user['bio']; ?></h5>
     <?php endif; ?>
     <br>
     <p class="error"><?php alert(); ?></p>
@@ -80,5 +79,5 @@ $user = getUserId($database, $id);
             <button type="submit" class="btn btn-danger">Delete account</button>
         </div><!-- /form-group -->
     </form>
-</article>
-<?php require __DIR__ . '/sections/footer.php'; ?>
+    </article>
+    <?php require __DIR__ . '/sections/footer.php'; ?>

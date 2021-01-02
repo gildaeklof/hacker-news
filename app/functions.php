@@ -125,15 +125,55 @@ function changePassword($database, $id, $password)
 //create post
 function createPost($database, $userid, $title, $link, $description, $date, $author)
 {
-    $query = 'INSERT INTO posts (user_id, title, link, description, date, author) VALUES (:userid, :title, :link, :description, :date, :author)';
+    $query = 'INSERT INTO posts (user_id, title, link, description, date, author) VALUES (:user_id, :title, :link, :description, :date, :author)';
     $statement = $database->prepare($query);
 
-    $statement->bindParam(':userid', $userid, PDO::PARAM_INT);
+    $statement->bindParam(':user_id', $userid, PDO::PARAM_INT);
     $statement->bindParam(':title', $title, PDO::PARAM_STR);
     $statement->bindParam(':link', $link, PDO::PARAM_STR);
     $statement->bindParam(':description', $description, PDO::PARAM_STR);
     $statement->bindParam(':date', $date, PDO::PARAM_STR);
     $statement->bindParam(':author', $author, PDO::PARAM_STR);
+    $statement->execute();
+}
+
+//get new posts
+//order by date doesn't work?
+function getNewPosts($database): array
+{
+    $query = 'SELECT * FROM posts ORDER BY id DESC';
+    $statement = $database->prepare($query);
+
+    $statement->execute();
+
+    $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $_SESSION['posts'] = $posts;
+    return $_SESSION['posts'];
+}
+
+//get posts by user
+function getPostsByUser($database, $userid): array
+{
+    $query = 'SELECT * FROM posts WHERE user_id = :user_id';
+    $statement = $database->prepare($query);
+
+    $statement->bindParam(':user_id', $userid, PDO::PARAM_INT);
+    $statement->execute();
+
+    $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $posts;
+}
+
+//delete post
+function deletePost($database, $id, $userid)
+{
+    $id = $_POST['delete-post'];
+    $userid = $_SESSION['user']['id'];
+    $query = 'DELETE FROM posts WHERE id = :id AND user_id = :user_id';
+    $statement = $database->prepare($query);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->bindParam(':user_id', $userid, PDO::PARAM_INT);
     $statement->execute();
 }
 

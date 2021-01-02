@@ -24,5 +24,9 @@
                 <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/login.php' ? 'active' : ''; ?>" href="login.php">Profile</a>
             <?php endif; ?>
         </li><!-- /nav-item -->
+
+        <li class="nav-item">
+            <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/posts.php' ? 'active' : ''; ?>" href="/posts.php">My posts</a>
+        </li><!-- /nav-item -->
     </ul><!-- /navbar-nav -->
 </nav><!-- /navbar -->
