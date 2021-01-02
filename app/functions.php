@@ -120,6 +120,23 @@ function changePassword($database, $id, $password)
     $statement->execute();
 }
 
+//post functions
+//
+//create post
+function createPost($database, $userid, $title, $link, $description, $date, $author)
+{
+    $query = 'INSERT INTO posts (user_id, title, link, description, date, author) VALUES (:userid, :title, :link, :description, :date, :author)';
+    $statement = $database->prepare($query);
+
+    $statement->bindParam(':userid', $userid, PDO::PARAM_INT);
+    $statement->bindParam(':title', $title, PDO::PARAM_STR);
+    $statement->bindParam(':link', $link, PDO::PARAM_STR);
+    $statement->bindParam(':description', $description, PDO::PARAM_STR);
+    $statement->bindParam(':date', $date, PDO::PARAM_STR);
+    $statement->bindParam(':author', $author, PDO::PARAM_STR);
+    $statement->execute();
+}
+
 //delete account
 function deleteUser($database, $id)
 {
