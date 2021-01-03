@@ -36,12 +36,16 @@
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </div>
-                        <form action="/app/posts/newcomment.php" method="post">
-                            <textarea rows="2" class="form-control" type="comment" name="comment" id="comment"></textarea>
-                            <input type="hidden" id="post-id" name="post-id" value="<?= $post['id'] ?>"></input>
-                            <br>
-                            <button type="submit" name="new-comment" class="btn btn-dark btn-sm">Add comment</button>
-                        </form>
+                        <?php if (isset($_SESSION['user'])) : ?>
+                            <form action="/app/posts/newcomment.php" method="post">
+                                <textarea rows="2" class="form-control" type="comment" name="comment" id="comment"></textarea>
+                                <input type="hidden" id="post-id" name="post-id" value="<?= $post['id'] ?>"></input>
+                                <br>
+                                <button type="submit" name="new-comment" class="btn btn-dark btn-sm">Add comment</button>
+                            </form>
+                        <?php else : ?>
+                            <a href="/login.php">Log in to add a comment!</a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
