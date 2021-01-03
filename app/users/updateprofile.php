@@ -20,10 +20,12 @@ if (isset($_POST['update-email'])) {
         $_SESSION['errors'] = "The email is already registered.";
         unset($_SESSION['update']['update-email']);
         redirect('/profile.php');
+    } else {
+        changeEmail($database, $id, $email);
+        $_SESSION['errors'] = "Your email was updated.";
+        unset($_SESSION['update']);
+        redirect('/profile.php');
     }
-    changeEmail($database, $id, $email);
-    $_SESSION['errors'] = "Your email was updated.";
-    unset($_SESSION['update']);
 }
 
 //update username
@@ -39,10 +41,12 @@ if (isset($_POST['update-username'])) {
         $_SESSION['errors'] = "The username is taken.";
         unset($_SESSION['update']['update-username']);
         redirect('/profile.php');
+    } else {
+        changeUsername($database, $id, $username);
+        $_SESSION['errors'] = "Your username was updated.";
+        unset($_SESSION['update']);
+        redirect('/profile.php');
     }
-    changeUsername($database, $id, $username);
-    $_SESSION['errors'] = "Your username was updated.";
-    unset($_SESSION['update']);
 }
 
 //update bio

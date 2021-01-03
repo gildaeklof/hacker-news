@@ -8,4 +8,5 @@ require __DIR__ . '/../autoload.php';
 if (isset($_POST['delete-post'])) {
     deletePost($database, $id, $userid);
 }
-redirect('/posts.php');
+header('Location: ' . $_SERVER['HTTP_REFERER']);
+exit;

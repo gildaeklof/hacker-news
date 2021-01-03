@@ -26,7 +26,9 @@
         </li><!-- /nav-item -->
 
         <li class="nav-item">
-            <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/posts.php' ? 'active' : ''; ?>" href="/posts.php">My posts</a>
+            <?php if (isset($_SESSION['user'])) : ?>
+                <a class="nav-link hidden <?php echo $_SERVER['SCRIPT_NAME'] === '/posts.php' ? 'active' : ''; ?>" href="/posts.php">My posts</a>
+            <?php endif; ?>
         </li><!-- /nav-item -->
     </ul><!-- /navbar-nav -->
 </nav><!-- /navbar -->

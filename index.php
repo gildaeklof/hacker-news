@@ -7,7 +7,7 @@
         <?php if (isset($_SESSION['user'])) : ?>
             <h5>Welcome, <?php echo $_SESSION['user']['username']; ?>!</h5>
         <?php else : ?>
-            <h5>Log in for the best experience!</h5>
+            <h5><a href="/login.php">Log in</a> for the best experience!</h5>
         <?php endif; ?>
 
         <?php if (isset($_SESSION['user'])) : ?>
@@ -33,7 +33,6 @@
                 <button type="submit" class="btn btn-dark">Create post</button>
             </form>
     </article>
-<?php else : ?> <p>Please <a href="/login.php">log in</a> to create a post.</p>
 <?php endif; ?>
 <article>
     <h2>New posts</h2>
@@ -49,6 +48,18 @@
                         <p class="card-text"><?= $post['description']; ?></p>
                         <a href="<?= $post['link']; ?>" class="btn btn-dark"><?= $post['link']; ?></a>
                         <small class="form-text text-muted"><?= $post['date']; ?></small>
+                        <button type="button" class="btn btn-primary">
+                            Upvote <span class="badge badge-light">3</span>
+                        </button>
+                        <a href="/comments.php?id=<?= $post['id'] ?>" class="btn btn-dark">Comments</a>
+                        <?php if (isset($_SESSION['user'])) : ?>
+                            <?php if ($post['user_id'] === $_SESSION['user']['id']) : ?>
+                                <form action="/app/posts/delete.php" method="post">
+                                    <input type="hidden" id="delete-post" name="delete-post" value="<?= $post['id'] ?>"></input>
+                                    <button type="submit" name="delete" class="btn btn-danger btn-sm">Delete post</button>
+                                </form>
+                            <?php endif; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
