@@ -296,6 +296,17 @@ function deleteComment($database, $id, $userid)
     $statement->execute();
 }
 
+//edit comment
+function editComment($database, $content, $id, $userid)
+{
+    $query = 'UPDATE comments SET content = :content WHERE id = :id AND user_id = :user_id';
+    $statement = $database->prepare($query);
+    $statement->bindParam(':content', $content, PDO::PARAM_STR);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->bindParam(':user_id', $userid, PDO::PARAM_INT);
+    $statement->execute();
+}
+
 //delete account
 function deleteUser($database, $id)
 {

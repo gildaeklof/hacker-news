@@ -9,7 +9,11 @@ $user = getUserId($database, $id);
     <div class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
             <div class="col-md-4">
-                <img src="/app/users/uploads/<?= $user['avatar']; ?>" alt="...">
+                <?php if (!$user['avatar']) : ?>
+                    <img src="/app/users/uploads/default.jpg" alt="Profile picture">
+                <?php else : ?>
+                    <img src="/app/users/uploads/<?= $user['avatar']; ?>" alt="Profile picture">
+                <?php endif; ?>
             </div>
             <div class="col-md-8">
                 <div class="card-body">
