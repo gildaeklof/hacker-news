@@ -284,7 +284,7 @@ function addComment($database, $userid, $postid, $content, $author)
     $statement->execute();
 }
 
-//delete comment doesn't work bajsssssss
+//delete comment
 function deleteComment($database, $id, $userid)
 {
     $id = $_POST['delete-comment'];

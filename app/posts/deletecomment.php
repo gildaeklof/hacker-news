@@ -8,4 +8,5 @@ require __DIR__ . '/../autoload.php';
 if (isset($_POST['delete-comment'])) {
     deleteComment($database, $id, $userid);
 }
-redirect('/comments.php?id=' . $postid);
+header('Location: ' . $_SERVER['HTTP_REFERER']);
+exit;
