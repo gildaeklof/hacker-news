@@ -78,6 +78,16 @@ function getUserId($database, $id)
     }
 }
 
+//update profile picture
+function changeProfileImg($database, $id, $avatarname)
+{
+    $query = 'UPDATE users SET avatar = :avatar WHERE id = :id';
+    $statement = $database->prepare($query);
+    $statement->bindParam(':avatar', $avatarname, PDO::PARAM_STR);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+}
+
 //update email
 function changeEmail($database, $id, $email)
 {
@@ -232,6 +242,7 @@ function getUpvotes($database, $id)
 }*/
 
 //delete post
+//need to add delete comments with delete post
 function deletePost($database, $id, $userid)
 {
     $id = $_POST['delete-post'];

@@ -29,7 +29,7 @@
                                 <?php if (isset($_SESSION['user'])) : ?>
                                     <?php if ($comment['user_id'] === $_SESSION['user']['id']) : ?>
                                         <form action="/app/posts/deletecomment.php" method="post">
-                                            <input type="hidden" id="delete-comment" name="delete-comment" value="<?= $post['id'] ?>"></input>
+                                            <input type="hidden" id="delete-comment" name="delete-comment" value="<?= $comment['id'] ?>"></input>
                                             <button type="submit" name="delete" class="btn btn-danger btn-sm">Delete comment</button>
                                         </form>
                                     <?php endif; ?>

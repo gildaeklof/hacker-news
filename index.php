@@ -12,6 +12,7 @@
 
         <?php if (isset($_SESSION['user'])) : ?>
             <h3>Create a new post</h3>
+            <p class="success"><?php alert(); ?></p>
             <form action="/app/posts/store.php" method="post">
                 <div class="form-group">
                     <label for="new-title">Title</label>

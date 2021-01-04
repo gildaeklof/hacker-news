@@ -7,6 +7,31 @@ require __DIR__ . '/../autoload.php';
 $id = $_SESSION['user']['id'];
 $user = getUserId($database, $id);
 
+//upload avatar
+if (isset($_FILES['avatar'])) {
+    $avatar = $_FILES['avatar'];
+    $name = $avatar['name'];
+    $username = $user['username'];
+    $avatarname = "$username-$name";
+
+    if (!in_array($avatar['type'], ['image/jpeg', 'image/png'])) {
+        $_SESSION['errors'] = "The uploaded file type is not allowed.";
+    }
+
+    if ($avatar['size'] > 2097152) {
+        $_SESSION['errors'] = "The uploaded file exceeded the filesize limit.";
+    }
+
+    if (!$_SESSION['errors']) {
+        $destination = __DIR__ . "/uploads/$username-$name";
+        move_uploaded_file($avatar['tmp_name'], $destination);
+
+        changeProfileImg($database, $id, $avatarname);
+        $_SESSION['errors'] = "The file was successfully uploaded!";
+        redirect('/profile.php');
+    }
+}
+
 //update email
 if (isset($_POST['update-email'])) {
     $email = filter_var($_POST['update-email'], FILTER_SANITIZE_EMAIL);
