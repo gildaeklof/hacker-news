@@ -14,12 +14,16 @@ if (isset($_FILES['avatar'])) {
     $username = $user['username'];
     $avatarname = "$username-$name";
 
-    if (!in_array($avatar['type'], ['image/jpeg', 'image/png'])) {
-        $_SESSION['errors'] = "The uploaded file type is not allowed.";
-    }
+    $accepted = ['image/jpeg', 'image/jpg', 'image/png'];
 
+    if (!in_array($avatar['type'], $accepted)) {
+        $_SESSION['errors'] = "The uploaded file type is not allowed.";
+        redirect('/profile.php');
+    }
+    //error doesn't work
     if ($avatar['size'] > 2097152) {
         $_SESSION['errors'] = "The uploaded file exceeded the filesize limit.";
+        redirect('/profile.php');
     }
 
     if (!$_SESSION['errors']) {

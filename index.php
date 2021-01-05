@@ -49,9 +49,18 @@
                         <p class="card-text"><?= $post['description']; ?></p>
                         <a href="<?= $post['link']; ?>" class="btn btn-dark"><?= $post['link']; ?></a>
                         <small class="form-text text-muted"><?= $post['date']; ?></small>
-                        <button type="button" class="btn btn-primary">
-                            Upvote <span class="badge badge-light">3</span>
-                        </button>
+                        <?php $upvotes = getUpvotes($database, $post['id']); ?>
+                        <?php if (isset($_SESSION['user'])) : ?>
+                            <form action="/app/posts/upvote.php" method="post">
+                                <input type="hidden" name="upvote" id="post-id" value="<?= $post['id']; ?>"></input>
+                                <button value="<?= $post['id']; ?>" type="submit" name="upvote" class="btn btn-primary">Upvotes<span class="badge bg-secondary"><?= $upvotes; ?></span></button>
+                            </form>
+                        <?php else : ?>
+                            <form action="/login.php" method="post">
+                                <input type="hidden" name="upvote" id="post-id" value="<?= $post['id']; ?>"></input>
+                                <button type="submit" class="btn btn-primary">Upvotes<span class="badge bg-secondary"><?= $upvotes; ?></span></button>
+                            </form>
+                        <?php endif; ?>
                         <a href="/comments.php?id=<?= $post['id'] ?>" class="btn btn-dark">Comments</a>
                         <?php if (isset($_SESSION['user'])) : ?>
                             <?php if ($post['user_id'] === $_SESSION['user']['id']) : ?>

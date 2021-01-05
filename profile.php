@@ -6,9 +6,9 @@ $user = getUserId($database, $id);
 ?>
 <?php if (isset($_SESSION['user'])) : ?>
     <h1><?= $user['username']; ?>'s profile</h1>
-    <div class="card mb-3" style="max-width: 540px;">
+    <div class="card mb-3" style="max-width: 570px;">
         <div class="row g-0">
-            <div class="col-md-4">
+            <div class="col-md-4 avatar-img">
                 <?php if (!$user['avatar']) : ?>
                     <img src="/app/users/uploads/default.jpg" alt="Profile picture">
                 <?php else : ?>

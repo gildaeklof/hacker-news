@@ -206,17 +206,19 @@ function updatePost($database, $id, $userid, $title, $link, $description)
     $statement->execute();
 }
 
-/*checks if like exists
-function existUpvote($database, $id, $userid)
+//checks if like exists
+function existUpvote($database, $postid, $userid)
 {
-    $id = $_SESSION['posts']['id'];
-    $userid = $_SESSION['user']['id'];
-
-    $query = 'SELECT * FROM upvotes WHERE id = :id AND user_id = :user_id';
+    $query = 'SELECT * FROM upvotes WHERE post_id = :post_id AND user_id = :user_id';
     $statement = $database->prepare($query);
 
-    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    if (!$statement) {
+        die(var_dump($database->errorinfo()));
+    }
+
+    $statement->bindParam(':post_id', $postid, PDO::PARAM_INT);
     $statement->bindParam(':user_id', $userid, PDO::PARAM_INT);
+    $statement->execute();
 
     $upvote = $statement->fetch(PDO::FETCH_ASSOC);
 
@@ -227,10 +229,31 @@ function existUpvote($database, $id, $userid)
     }
 }
 
-//get number of upvotes
-function getUpvotes($database, $id)
+//upvote
+function upvotePost($database, $postid, $userid)
 {
-    $id = $_SESSION['posts']['id'];
+    $query = 'INSERT INTO upvotes (post_id, user_id) VALUES (:post_id, :user_id)';
+    $statement = $database->prepare($query);
+
+    $statement->bindParam(':post_id', $postid, PDO::PARAM_INT);
+    $statement->bindParam(':user_id', $userid, PDO::PARAM_INT);
+    $statement->execute();
+}
+
+//remove upvote
+function removeUpvote($database, $postid, $userid)
+{
+    $query = 'DELETE FROM upvotes WHERE user_id = :user_id AND post_id = :post_id';
+    $statement = $database->prepare($query);
+
+    $statement->bindParam(':post_id', $postid, PDO::PARAM_INT);
+    $statement->bindParam(':user_id', $userid, PDO::PARAM_INT);
+    $statement->execute();
+}
+
+//get number of upvotes
+function getUpvotes($database, $id): int
+{
     $query = 'SELECT COUNT(*) FROM upvotes WHERE post_id = :post_id';
     $statement = $database->prepare($query);
 
@@ -238,8 +261,8 @@ function getUpvotes($database, $id)
     $statement->execute();
 
     $upvotes = $statement->fetch(PDO::FETCH_ASSOC);
-    return $upvotes['COUNT(*)'];
-}*/
+    return (int) $upvotes["COUNT(*)"];
+}
 
 //delete post
 //need to add delete comments with delete post
