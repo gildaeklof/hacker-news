@@ -330,6 +330,19 @@ function editComment($database, $content, $id, $userid)
     $statement->execute();
 }
 
+//get number of comments
+function getCommentCount($database, $id): int
+{
+    $query = 'SELECT COUNT(*) FROM comments WHERE post_id = :post_id';
+    $statement = $database->prepare($query);
+
+    $statement->bindParam(':post_id', $id, PDO::PARAM_INT);
+    $statement->execute();
+
+    $commentcount = $statement->fetch(PDO::FETCH_ASSOC);
+    return (int) $commentcount["COUNT(*)"];
+}
+
 //delete account
 function deleteUser($database, $id)
 {

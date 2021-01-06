@@ -61,7 +61,8 @@
                                 <button type="submit" class="btn btn-primary">Upvotes<span class="badge bg-secondary"><?= $upvotes; ?></span></button>
                             </form>
                         <?php endif; ?>
-                        <a href="/comments.php?id=<?= $post['id'] ?>" class="btn btn-dark">Comments</a>
+                        <?php $commentcount = getCommentCount($database, $post['id']); ?>
+                        <a href="/comments.php?id=<?= $post['id'] ?>" class="btn btn-dark">Comments<span class="badge bg-secondary"><?= $commentcount; ?></span></a>
                         <?php if (isset($_SESSION['user'])) : ?>
                             <?php if ($post['user_id'] === $_SESSION['user']['id']) : ?>
                                 <form action="/app/posts/delete.php" method="post">
