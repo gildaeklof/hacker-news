@@ -20,8 +20,6 @@ if (isset($_POST['new-email'], $_POST['new-username'], $_POST['new-password-1'],
     $_SESSION['register']['new-password-2'] = $passwordConf;
     $_SESSION['register']['new-bio'] = $bio;
 
-
-
     existEmail($database, $email);
     if ($_SESSION['emailexist']['email'] === $email) {
 

@@ -1,16 +1,12 @@
 <?php require __DIR__ . '/app/autoload.php'; ?>
-<?php require __DIR__ . '/sections/header.php';
-?>
+<?php require __DIR__ . '/sections/header.php'; ?>
+
 <main>
+
     <article>
         <h1><?php echo $config['title']; ?></h1>
         <?php if (isset($_SESSION['user'])) : ?>
             <h5>Welcome, <?php echo $_SESSION['user']['username']; ?>!</h5>
-        <?php else : ?>
-            <h5><a href="/login.php">Log in</a> for the best experience!</h5>
-        <?php endif; ?>
-
-        <?php if (isset($_SESSION['user'])) : ?>
             <h3>Create a new post</h3>
             <p class="success"><?php alert(); ?></p>
             <form action="/app/posts/store.php" method="post">
@@ -34,11 +30,17 @@
                 <button type="submit" class="btn btn-dark">Create post</button>
             </form>
     </article>
+
+<?php else : ?>
+    <h5><a href="/login.php">Log in</a> for the best experience!</h5>
 <?php endif; ?>
+
+
+
 <article>
-    <h2>New posts</h2>
-    <?php
-    $posts = getNewPosts($database); ?>
+    <a href="/index.php">New posts</a>
+    <a href="/popular.php">Most upvoted posts</a>
+    <?php $posts = getNewPosts($database); ?>
     <?php foreach ($posts as $post) : ?>
         <div class="row">
             <div class="col-sm-6">
@@ -77,6 +79,8 @@
         </div>
     <?php endforeach; ?>
 </article>
+
+</main>
 
 
 <?php require __DIR__ . '/sections/footer.php'; ?>

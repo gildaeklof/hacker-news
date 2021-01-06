@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
 
-
-
 if (isset($_POST['new-title'], $_POST['new-url'], $_POST['new-description'])) {
     $userid = $_SESSION['user']['id'];
     $title = filter_var($_POST['new-title'], FILTER_SANITIZE_STRING);

@@ -164,7 +164,7 @@ function getNewPosts($database): array
 //get posts by user
 function getPostsByUser($database, $userid): array
 {
-    $query = 'SELECT * FROM posts WHERE user_id = :user_id';
+    $query = 'SELECT * FROM posts WHERE user_id = :user_id ORDER BY id DESC';
     $statement = $database->prepare($query);
 
     $statement->bindParam(':user_id', $userid, PDO::PARAM_INT);
@@ -262,6 +262,16 @@ function getUpvotes($database, $id): int
 
     $upvotes = $statement->fetch(PDO::FETCH_ASSOC);
     return (int) $upvotes["COUNT(*)"];
+}
+
+function mostUpvoted($database): array
+{
+    $query = 'SELECT posts.id, posts.user_id, posts.title, posts.link, posts.description, posts.date, posts.author, upvotes.post_id FROM posts INNER JOIN upvotes on posts.id = upvotes.post_id GROUP BY post_id ORDER BY COUNT(*) DESC';
+    $statement = $database->prepare($query);
+    $statement->execute();
+
+    $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $posts;
 }
 
 //delete post
