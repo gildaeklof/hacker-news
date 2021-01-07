@@ -30,10 +30,10 @@ img {
   border-radius: 50%;
 }
 
-.hidden {
+.formhidden {
   display: none;
 }
 
-.unhidden {
+.formunhidden {
   display: block;
 }

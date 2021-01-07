@@ -8,9 +8,9 @@
         <?php if (isset($_SESSION['user'])) : ?>
             <h5>Welcome, <?php echo $_SESSION['user']['username']; ?>!</h5>
             <h3>Create a new post</h3>
-            <button value="unhide" class="btn btn-dark form-button">Create a new post</button>
             <p class="success"><?php alert(); ?></p>
-            <form class="post-form hidden" action="/app/posts/store.php" method="post">
+            <button value="unhide" class="btn btn-dark form-button">Create a new post</button>
+            <form class="post-form formhidden" action="/app/posts/store.php" method="post">
                 <div class="form-group">
                     <label for="new-title">Title</label>
                     <input class="form-control" type="text" name="new-title" id="title" required>

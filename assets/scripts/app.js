@@ -3,19 +3,19 @@ const hideButton = document.querySelector(".post-button");
 const form = document.querySelector(".post-form");
 
 showButton.addEventListener("click", () => {
-  if (form.className === "hidden") {
-    form.className = "unhidden";
+  if (form.className === "formhidden") {
+    form.className = "formunhidden";
   } else {
-    form.className = "unhidden";
+    form.className = "formunhidden";
     button.value = "unhide";
   }
 });
 
 hideButton.addEventListener("click", () => {
-  if (form.className === "unhidden") {
-    form.className = "hidden";
+  if (form.className === "formunhidden") {
+    form.className = "formhidden";
   } else {
-    form.className = "hidden";
+    form.className = "formhidden";
     button.value = "hide";
   }
 });

@@ -10,7 +10,7 @@
             <h3>Create a new post</h3>
             <p class="success"><?php alert(); ?></p>
             <button value="unhide" class="btn btn-dark form-button">Create a new post</button>
-            <form class="post-form hidden" action="/app/posts/store.php" method="post">
+            <form class="post-form formhidden" action="/app/posts/store.php" method="post">
                 <div class="form-group">
                     <label for="new-title">Title</label>
                     <input class="form-control" type="text" name="new-title" id="title" required>
