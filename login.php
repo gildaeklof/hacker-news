@@ -4,6 +4,7 @@
 <article>
     <h1>Login</h1>
     <p class="error"><?php alert(); ?></p>
+
     <form action="app/users/login.php" method="post">
         <div class="form-group">
             <label for="current-email">Email</label>
@@ -25,12 +26,12 @@
                                                                                                         }
                                                                                                         ?>" required>
             <small class="form-text text-muted">Please provide your password.</small>
+            <button type="submit" class="btn btn-dark post-div-button" name="login_user">Login</button>
         </div><!-- /form-group -->
-
-        <button type="submit" class="btn btn-dark" name="login_user">Login</button>
-        <small class="form-text text-muted">Don't have an account?</small>
     </form>
-    <a class="btn btn-dark" href="/newaccount.php" role="button">Create a new account</a>
+
+    <small class="form-text text-muted">Don't have an account?</small>
+    <a class="btn btn-dark post-div-button" href="/newaccount.php" role="button">Create a new account</a>
 </article>
 
 <?php require __DIR__ . '/sections/footer.php'; ?>

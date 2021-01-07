@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(227, 187, 203);
+  background-color: rgb(252, 241, 231);
 }
 
 input[type="email"]:invalid {
@@ -14,26 +14,6 @@ input[type="email"]:invalid {
   color: green;
 }
 
-.card {
-  margin: 10px;
-}
-
-.avatar-img {
-  width: 200px;
-  height: 212px;
-}
-
-img {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.formhidden {
-  display: none;
-}
-
-.formunhidden {
-  display: block;
+h1 {
+  text-decoration: underline;
 }

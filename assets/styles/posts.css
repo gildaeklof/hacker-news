@@ -1,0 +1,38 @@
+.card,
+.cancel-button {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.formhidden {
+  display: none;
+}
+
+.formunhidden {
+  display: block;
+}
+
+h2 {
+  margin-top: 20px;
+}
+
+.post-div-button,
+.comment-button {
+  margin-top: 5px;
+}
+
+.post-link {
+  color: black;
+}
+
+.order-by,
+.comment-section,
+.edit-post-form {
+  margin-top: 10px;
+}
+
+.order-link {
+  margin: 2px;
+  display: inline-block;
+  color: rgb(11, 101, 171);
+}

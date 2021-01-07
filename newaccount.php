@@ -3,7 +3,7 @@
 <article>
     <h1>Create a new account</h1>
     <p class="error"><?php alert(); ?></p>
-    <!--remove errors somehow? and somehow display appropriately-->
+
     <form action="/app/users/register.php" method="post">
         <div class="form-group">
             <label for="new-email">Email</label>
@@ -26,6 +26,7 @@
                                                                                                     ?>" required>
             <small class="form-text text-muted">Please choose a username.</small>
         </div>
+
         <div class="form-group">
             <label for="new-password-1">Password</label>
             <input class="form-control" type="password" name="new-password-1" id="password" value="<?php
@@ -56,11 +57,9 @@
                                                                                         unset($_SESSION['register']['new-bio']);
                                                                                     }
                                                                                     ?>"></textarea>
-            <small class="form-text text-muted">Tell us something about yourself! You can update your bio later.</small>
+            <small class="form-text text-muted">Tell us something about yourself! You can update your profile later.</small>
+            <button type="submit" class="btn btn-dark post-div-button">Create account</button>
         </div><!-- /form-group -->
-
-        <button type="submit" class="btn btn-dark">Create account</button>
-
     </form>
 </article>
 
