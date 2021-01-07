@@ -147,6 +147,12 @@ function createPost($database, $userid, $title, $link, $description, $date, $aut
     $statement->execute();
 }
 
+//prettify urls
+function sanitizeLink($link): string
+{
+    return (string) preg_replace("#^[^:/.]*[:/]+#i", "", $link);
+}
+
 //get new posts
 //order by date doesn't work?
 function getNewPosts($database): array

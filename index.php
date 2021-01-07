@@ -40,6 +40,7 @@
 <article>
     <a href="/index.php">New posts</a>
     <a href="/popular.php">Most upvoted posts</a>
+    <h2>New posts</h2>
     <?php $posts = getNewPosts($database); ?>
     <?php foreach ($posts as $post) : ?>
         <div class="row">
@@ -49,13 +50,17 @@
                         <h4 class="card-title"><?= $post['title']; ?></h4>
                         <h6 class="card-title-2"><?= $post['author']; ?></h6>
                         <p class="card-text"><?= $post['description']; ?></p>
-                        <a href="<?= $post['link']; ?>" class="btn btn-dark"><?= $post['link']; ?></a>
+                        <a href="<?= $post['link']; ?>" class="btn btn-dark"><?= sanitizeLink($post['link']); ?></a>
                         <small class="form-text text-muted"><?= $post['date']; ?></small>
                         <?php $upvotes = getUpvotes($database, $post['id']); ?>
                         <?php if (isset($_SESSION['user'])) : ?>
                             <form action="/app/posts/upvote.php" method="post">
                                 <input type="hidden" name="upvote" id="post-id" value="<?= $post['id']; ?>"></input>
-                                <button value="<?= $post['id']; ?>" type="submit" name="upvote" class="btn btn-primary">Upvotes<span class="badge bg-secondary"><?= $upvotes; ?></span></button>
+                                <?php if (!existUpvote($database, $post['id'], $_SESSION['user']['id'])) : ?>
+                                    <button value="<?= $post['id']; ?>" type="submit" name="upvote" class="btn btn-primary">Upvote<span class="badge bg-secondary"><?= $upvotes; ?></span></button>
+                                <?php else : ?>
+                                    <button value="<?= $post['id']; ?>" type="submit" name="upvote" class="btn btn-primary">Remove upvote<span class="badge bg-secondary"><?= $upvotes; ?></span></button>
+                                <?php endif; ?>
                             </form>
                         <?php else : ?>
                             <form action="/login.php" method="post">

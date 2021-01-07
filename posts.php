@@ -17,7 +17,7 @@
                             <h4 class="card-title"><?= $post['title']; ?></h4>
                             <h6 class="card-title-2"><?= $post['author']; ?></h6>
                             <p class="card-text"><?= $post['description']; ?></p>
-                            <a href="<?= $post['link']; ?>" class="btn btn-dark"><?= $post['link']; ?></a>
+                            <a href="<?= $post['link']; ?>" class="btn btn-dark"><?= sanitizeLink($post['link']); ?></a>
                             <small class="form-text text-muted"><?= $post['date']; ?></small>
                             <br>
                             <form action="/editpost.php?id=<?= $post['id'] ?>" method="post">
