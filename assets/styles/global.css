@@ -29,3 +29,11 @@ img {
   object-fit: cover;
   border-radius: 50%;
 }
+
+.hidden {
+  display: none;
+}
+
+.unhidden {
+  display: block;
+}

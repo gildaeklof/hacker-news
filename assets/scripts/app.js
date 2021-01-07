@@ -1,8 +1,21 @@
-const votebutton = document.querySelector(".votebutton");
+const showButton = document.querySelector(".form-button");
+const hideButton = document.querySelector(".post-button");
+const form = document.querySelector(".post-form");
 
-function toggleUpvote() {
-  if (votebutton.innerHTML === "Upvote") {
+showButton.addEventListener("click", () => {
+  if (form.className === "hidden") {
+    form.className = "unhidden";
   } else {
-    votebutton.innerHTML = "Unvote";
+    form.className = "unhidden";
+    button.value = "unhide";
   }
-}
+});
+
+hideButton.addEventListener("click", () => {
+  if (form.className === "unhidden") {
+    form.className = "hidden";
+  } else {
+    form.className = "hidden";
+    button.value = "hide";
+  }
+});

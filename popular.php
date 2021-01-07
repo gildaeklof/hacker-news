@@ -8,26 +8,27 @@
         <?php if (isset($_SESSION['user'])) : ?>
             <h5>Welcome, <?php echo $_SESSION['user']['username']; ?>!</h5>
             <h3>Create a new post</h3>
+            <button value="unhide" class="btn btn-dark form-button">Create a new post</button>
             <p class="success"><?php alert(); ?></p>
-            <form action="/app/posts/store.php" method="post">
+            <form class="post-form hidden" action="/app/posts/store.php" method="post">
                 <div class="form-group">
                     <label for="new-title">Title</label>
-                    <input class="form-control" type="text" name="new-title" id="title">
+                    <input class="form-control" type="text" name="new-title" id="title" required>
                     <small class="form-text text-muted">Add a title to your post.</small>
                 </div><!-- /form-group -->
 
                 <div class="form-group">
                     <label for="new-url">Url</label>
-                    <input class="form-control" type="text" name="new-url" id="url">
+                    <input class="form-control" type="text" name="new-url" id="url" required>
                     <small class="form-text text-muted">Add a url to your post.</small>
                 </div><!-- /form-group -->
 
                 <div class="form-group">
                     <label for="new-description">Description</label>
-                    <textarea class="form-control" rows="3" name="new-description" id="description"></textarea>
+                    <textarea class="form-control" rows="3" name="new-description" id="description" required></textarea>
                     <small class="form-text text-muted">Add a description to your post.</small>
                 </div><!-- /form-group -->
-                <button type="submit" class="btn btn-dark">Create post</button>
+                <button value="hide" type="submit" class="btn btn-dark post-button">Create post</button>
             </form>
     </article>
 
