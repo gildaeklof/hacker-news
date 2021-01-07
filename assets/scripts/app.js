@@ -1,5 +1,5 @@
-const showButton = document.querySelector(".form-button");
-const hideButton = document.querySelector(".post-button");
+const showButton = document.querySelector(".show-button");
+const hideButton = document.querySelector(".hide-button");
 const form = document.querySelector(".post-form");
 
 showButton.addEventListener("click", () => {

@@ -9,7 +9,7 @@
             <h5>Welcome, <?php echo $_SESSION['user']['username']; ?>!</h5>
             <h3>Create a new post</h3>
             <p class="success"><?php alert(); ?></p>
-            <button value="unhide" class="btn btn-dark form-button">Create a new post</button>
+            <button value="unhide" class="btn btn-dark show-button">Create a new post</button>
             <form class="post-form formhidden" action="/app/posts/store.php" method="post">
                 <div class="form-group">
                     <label for="new-title">Title</label>
@@ -28,7 +28,7 @@
                     <textarea class="form-control" rows="3" name="new-description" id="description" required></textarea>
                     <small class="form-text text-muted">Add a description to your post.</small>
                 </div><!-- /form-group -->
-                <button value="hide" type="submit" class="btn btn-dark post-button">Create post</button>
+                <button value="hide" type="submit" class="btn btn-dark hide-button">Create post</button>
             </form>
     </article>
 
