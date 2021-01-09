@@ -29,3 +29,6 @@ cancelButton.addEventListener("click", () => {
     cancelButton.value = "hide";
   }
 });
+
+//ange cancel som hidebutton också, dom gör ju samma sak
+hideButton.forEach;

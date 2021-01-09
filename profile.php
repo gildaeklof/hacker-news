@@ -7,7 +7,7 @@ $user = getUserId($database, $id);
 <?php if (isset($_SESSION['user'])) : ?>
     <h1><?= $user['username']; ?>'s profile</h1>
     <div class="card mb-3" style="max-width: 570px;">
-        <div class="row g-0">
+        <div class="row g-0 center-mobile">
             <div class="col-md-4 avatar-img">
                 <?php if (!$user['avatar']) : ?>
                     <img src="/app/users/uploads/default.jpg" alt="Profile picture">
@@ -28,9 +28,10 @@ $user = getUserId($database, $id);
 
 <p class="error"><?php alert(); ?></p>
 <form action="/app/users/updateprofile.php" method="post" enctype="multipart/form-data">
-    <div class="mb-3 profile-div">
-        <label for="avatar" class="form-label">Upload a new profile picture.</label>
-        <input class="form-control" type="file" name="avatar" id="avatar" accept=".jpg, .jpeg, .png" required>
+    <div class="profile-div">
+        <p>Change profile picture</p>
+        <label for="avatar" class="custom-file-upload">Choose a file</label>
+        <input type="file" name="avatar" id="avatar" accept=".jpg, .jpeg, .png" required>
     </div>
     <button type="submit" class="btn btn-dark btn-sm post-div-button">Update profile picture</button>
 </form>

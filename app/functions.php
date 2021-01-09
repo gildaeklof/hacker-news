@@ -270,6 +270,7 @@ function getUpvotes($database, $id): int
     return (int) $upvotes["COUNT(*)"];
 }
 
+//fetch posts with most to least upvotes
 function mostUpvoted($database): array
 {
     $query = 'SELECT posts.id, posts.user_id, posts.title, posts.link, posts.description, posts.date, posts.author, upvotes.post_id FROM posts INNER JOIN upvotes on posts.id = upvotes.post_id GROUP BY post_id ORDER BY COUNT(*) DESC';
