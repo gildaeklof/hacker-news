@@ -1,10 +1,14 @@
 <?php require __DIR__ . '/app/autoload.php'; ?>
 <?php require __DIR__ . '/sections/header.php'; ?>
 
-<?php $id = $_GET['id']; ?>
+<?php $id = $_GET['id'];
+$previous = "javascript:history.go(-1)";
+if (isset($_SERVER['HTTP_REFERER'])) {
+    $previous = $_SERVER['HTTP_REFERER'];
+} ?>
 
 <main>
-    <a href="/index.php" class="btn btn-dark">Back</a>
+    <a href="<?= $previous ?>" class="btn btn-dark">Back</a>
     <?php if (isset($_SESSION['posts'])) : ?>
         <?php $post = getPostsById($database, $id);
         $comments = getCommentsByPostId($database, $id); ?>

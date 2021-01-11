@@ -4,15 +4,15 @@
 <main>
     <article>
 
-        <h1><?php echo $config['title']; ?></h1>
+        <h1 class="display-2"><?php echo $config['title']; ?></h1>
 
         <?php if (isset($_SESSION['user'])) : ?>
-            <h5>Welcome, <?php echo $_SESSION['user']['username']; ?>!</h5>
+            <h2>Welcome, <?php echo $_SESSION['user']['username']; ?>!</h2>
             <p class="success"><?php alert(); ?></p>
             <button value="unhide" class="btn btn-dark show-button">Create a new post</button>
 
             <form class="post-form formhidden" action="/app/posts/store.php" method="post">
-                <button type="button" value="hide" class="btn btn-dark cancel-button">Cancel</button>
+                <button type="button" value="hide" class="btn btn-dark hide-button cancel-button">Cancel</button>
                 <div class="form-group">
                     <label for="new-title">Title</label>
                     <input class="form-control" type="text" name="new-title" id="title" required>

@@ -1,6 +1,22 @@
+//menu
+
+const menubutton = document.querySelector(".icon");
+const nav = document.querySelector(".topnav");
+
+menubutton.addEventListener("click", hamMenu);
+
+function hamMenu() {
+  if (nav.className === "topnav") {
+    nav.className += " responsive";
+  } else {
+    nav.className = "topnav";
+  }
+}
+
+//show/hide forms
+
 const showButton = document.querySelector(".show-button");
-const hideButton = document.querySelector(".hide-button");
-const cancelButton = document.querySelector(".cancel-button");
+const hideButtons = document.querySelectorAll(".hide-button");
 const form = document.querySelector(".post-form");
 
 showButton.addEventListener("click", () => {
@@ -12,23 +28,15 @@ showButton.addEventListener("click", () => {
   }
 });
 
-hideButton.addEventListener("click", () => {
+hideButtons.forEach(function (hideButton) {
+  hideButton.addEventListener("click", hideForm);
+});
+
+function hideForm() {
   if (form.className === "formunhidden") {
     form.className = "formhidden";
   } else {
     form.className = "formhidden";
     hideButton.value = "hide";
   }
-});
-
-cancelButton.addEventListener("click", () => {
-  if (form.className === "formunhidden") {
-    form.className = "formhidden";
-  } else {
-    form.className = "formhidden";
-    cancelButton.value = "hide";
-  }
-});
-
-//ange cancel som hidebutton också, dom gör ju samma sak
-hideButton.forEach;
+}

@@ -1,5 +1,31 @@
 <?php require __DIR__ . '/app/autoload.php'; ?>
-<?php require __DIR__ . '/sections/header.php'; ?>
+<?php require __DIR__ . '/sections/header.php';
+
+$id = $_SESSION['user']['id'];
+$user = getUserId($database, $id);
+?>
+<?php if (isset($_SESSION['user'])) : ?>
+    <h1><?= $user['username']; ?>'s profile</h1>
+    <div class="card mb-3" style="max-width: 570px;">
+        <div class="row g-0 center-mobile">
+            <div class="col-md-4 avatar-img">
+                <?php if (!$user['avatar']) : ?>
+                    <img src="/app/users/uploads/default.jpg" alt="Profile picture">
+                <?php else : ?>
+                    <img src="/app/users/uploads/<?= $user['avatar']; ?>" alt="Profile picture">
+                <?php endif; ?>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><?= $user['username']; ?></h5>
+                    <p class="card-text"><?= $user['bio']; ?></p>
+                    <p class="card-text"><small class="text-muted"><?= $user['email']; ?></small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="/editprofile.php" class="btn btn-dark">Edit profile</a>
+<?php endif; ?>
 
 <?php if (isset($_SESSION['posts'], $_SESSION['user'])) : ?>
     <?php

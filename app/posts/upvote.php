@@ -29,3 +29,9 @@ if (isset($_POST['upvote'], $_SESSION['user']['id'])) {
 }
 header('Location: ' . $_SERVER['HTTP_REFERER']);
 exit;
+
+/* Returns the number of upvotes on the current post?:(
+    $upvotes = countUpvotes($database, $postid);
+    $upvotes = json_encode($upvotes);
+    header('Content-Type: application/json');
+    echo $upvotes;*/

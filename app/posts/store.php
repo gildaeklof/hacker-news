@@ -29,5 +29,6 @@ if (isset($_POST['new-title'], $_POST['new-url'], $_POST['new-description'])) {
 
     createPost($database, $userid, $title, $link, $description, $date, $author);
     $_SESSION['errors'] = "Your post was created!";
-    redirect('/index.php');
 }
+header('Location: ' . $_SERVER['HTTP_REFERER']);
+exit;
