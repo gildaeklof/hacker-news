@@ -9,6 +9,8 @@ function redirect(string $path)
 }
 
 //register functions
+//
+//checks if email is already registered
 function existEmail($database, $email)
 {
     $emailQuery = 'SELECT * FROM users WHERE email= :email';
@@ -25,6 +27,7 @@ function existEmail($database, $email)
     }
 }
 
+//checks if username is already registered
 function existUsername($database, $username)
 {
     $usernameQuery = 'SELECT * FROM users WHERE username= :username';
@@ -41,6 +44,7 @@ function existUsername($database, $username)
     }
 }
 
+//register user
 function regUser($database, $email, $username, $password, $bio)
 {
     $query = 'INSERT INTO users (email, username, password, bio) VALUES (:email, :username, :password, :bio)';
@@ -59,6 +63,30 @@ function regUser($database, $email, $username, $password, $bio)
     $statement->execute();
     $user = $statement->fetch(PDO::FETCH_ASSOC);
     $_SESSION['user'] = $user;
+}
+
+//delete account
+function deleteUser($database, $id)
+{
+    $query = 'DELETE FROM users WHERE id = :id';
+    $statement = $database->prepare($query);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+
+    $query = 'DELETE FROM comments WHERE user_id = :id';
+    $statement = $database->prepare($query);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+
+    $query = 'DELETE FROM upvotes WHERE user_id = :id';
+    $statement = $database->prepare($query);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+
+    $query = 'DELETE FROM posts WHERE user_id = :id';
+    $statement = $database->prepare($query);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
 }
 
 //update functions
@@ -154,7 +182,6 @@ function sanitizeLink($link): string
 }
 
 //get new posts
-//order by date doesn't work?
 function getNewPosts($database): array
 {
     $query = 'SELECT * FROM posts ORDER BY id DESC';
@@ -209,7 +236,27 @@ function updatePost($database, $id, $userid, $title, $link, $description)
     $statement->execute();
 }
 
-//checks if like exists
+//delete post
+function deletePost($database, $id, $userid)
+{
+    $id = $_POST['delete-post'];
+    $userid = $_SESSION['user']['id'];
+    $query = 'DELETE FROM posts WHERE id = :id AND user_id = :user_id';
+    $statement = $database->prepare($query);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->bindParam(':user_id', $userid, PDO::PARAM_INT);
+    $statement->execute();
+
+    $query = 'DELETE FROM comments WHERE post_id = :id AND user_id = :user_id';
+    $statement = $database->prepare($query);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->bindParam(':user_id', $userid, PDO::PARAM_INT);
+    $statement->execute();
+}
+
+//upvote functions
+//
+//checks if upvote exists
 function existUpvote($database, $postid, $userid)
 {
     $query = 'SELECT * FROM upvotes WHERE post_id = :post_id AND user_id = :user_id';
@@ -232,7 +279,7 @@ function existUpvote($database, $postid, $userid)
     }
 }
 
-//upvote
+//add upvote
 function upvotePost($database, $postid, $userid)
 {
     $query = 'INSERT INTO upvotes (post_id, user_id) VALUES (:post_id, :user_id)';
@@ -276,19 +323,6 @@ function mostUpvoted($database): array
 
     $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $posts;
-}
-
-//delete post
-//need to add delete comments with delete post
-function deletePost($database, $id, $userid)
-{
-    $id = $_POST['delete-post'];
-    $userid = $_SESSION['user']['id'];
-    $query = 'DELETE FROM posts WHERE id = :id AND user_id = :user_id';
-    $statement = $database->prepare($query);
-    $statement->bindParam(':id', $id, PDO::PARAM_INT);
-    $statement->bindParam(':user_id', $userid, PDO::PARAM_INT);
-    $statement->execute();
 }
 
 //comment functions
@@ -357,31 +391,7 @@ function getCommentCount($database, $id): int
     return (int) $commentcount["COUNT(*)"];
 }
 
-//delete account
-function deleteUser($database, $id)
-{
-    $query = 'DELETE FROM users WHERE id = :id';
-    $statement = $database->prepare($query);
-    $statement->bindParam(':id', $id, PDO::PARAM_INT);
-    $statement->execute();
-
-    $query = 'DELETE FROM comments WHERE user_id = :id';
-    $statement = $database->prepare($query);
-    $statement->bindParam(':id', $id, PDO::PARAM_INT);
-    $statement->execute();
-
-    $query = 'DELETE FROM upvotes WHERE user_id = :id';
-    $statement = $database->prepare($query);
-    $statement->bindParam(':id', $id, PDO::PARAM_INT);
-    $statement->execute();
-
-    $query = 'DELETE FROM posts WHERE user_id = :id';
-    $statement = $database->prepare($query);
-    $statement->bindParam(':id', $id, PDO::PARAM_INT);
-    $statement->execute();
-}
-
-//error function
+//error and success function
 function alerts(): void
 {
     if (isset($_SESSION['errors'])) {
