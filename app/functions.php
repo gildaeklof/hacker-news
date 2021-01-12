@@ -178,9 +178,6 @@ function getPostsByUser($database, $userid): array
 
     $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    if (!$posts) {
-        $_SESSION['errors'] = "You haven't posted anything yet.";
-    }
     return $posts;
 }
 

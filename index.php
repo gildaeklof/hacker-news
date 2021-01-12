@@ -75,7 +75,7 @@
 
                             <form action="/login.php" method="post">
                                 <input type="hidden" name="upvote" id="post-id" value="<?= $post['id']; ?>"></input>
-                                <button type="submit" class="btn btn-primary btn-sm post-div-button">Upvotes<span class="badge bg-secondary"><?= $upvotes = getUpvotes($database, $post['id']); ?></span></button>
+                                <button style="background-color: grey;" value="submit" type="submit" class="upvote-button" data-id="<?= $post['id']; ?>"></button>
                             </form>
 
                         <?php endif; ?>

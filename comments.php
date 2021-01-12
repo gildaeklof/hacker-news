@@ -36,7 +36,7 @@ alerts(); ?>
 
                             <form action="/login.php" method="post">
                                 <input type="hidden" name="upvote" id="post-id" value="<?= $post['id']; ?>"></input>
-                                <button type="submit" class="btn btn-primary btn-sm post-div-button">Upvotes<span class="badge bg-secondary"><?= $upvotes; ?></span></button>
+                                <button style="background-color: grey;" value="submit" type="submit" class="upvote-button" data-id="<?= $post['id']; ?>"></button>
                             </form>
 
                         <?php endif; ?>
@@ -65,6 +65,9 @@ alerts(); ?>
                                     <?php endif; ?>
                                 <?php endif; ?>
                             <?php endforeach; ?>
+                            <?php if (!$comments) : ?>
+                                <small class="text-muted">No comments yet...</small>
+                            <?php endif; ?>
                         </div>
 
                         <?php if (isset($_SESSION['user'])) : ?>
