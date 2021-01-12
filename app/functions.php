@@ -371,12 +371,15 @@ function deleteUser($database, $id)
 }
 
 //error function
-function alert()
+function alerts(): void
 {
     if (isset($_SESSION['errors'])) {
-        foreach ((array)$_SESSION['errors'] as $error) {
-            echo $error;
-            unset($_SESSION['errors']);
-        }
+        echo "<p class=\"error\">" . $_SESSION['errors'] . "</p>";
+        unset($_SESSION['errors']);
+    }
+
+    if (isset($_SESSION['success'])) {
+        echo "<p class=\"success\">" . $_SESSION['success'] . "</p>";
+        unset($_SESSION['success']);
     }
 }

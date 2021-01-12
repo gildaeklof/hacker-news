@@ -1,9 +1,9 @@
 <?php require __DIR__ . '/app/autoload.php'; ?>
 <?php require __DIR__ . '/sections/header.php'; ?>
+<?php alerts(); ?>
 
 <article>
     <h1>Login</h1>
-    <p class="error"><?php alert(); ?></p>
 
     <form action="app/users/login.php" method="post">
         <div class="form-group">

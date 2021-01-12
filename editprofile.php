@@ -2,6 +2,7 @@
 <?php require __DIR__ . '/sections/header.php';
 $id = $_SESSION['user']['id'];
 $user = getUserId($database, $id);
+alerts();
 ?>
 <?php if (isset($_SESSION['user'])) : ?>
     <h1><?= $user['username']; ?>'s profile</h1>
@@ -24,7 +25,7 @@ $user = getUserId($database, $id);
         </div>
     </div>
 <?php endif; ?>
-<p class="error"><?php alert(); ?></p>
+
 <form action="/app/users/updateprofile.php" method="post" enctype="multipart/form-data">
     <div class="profile-div">
         <p>Change profile picture</p>
@@ -79,9 +80,8 @@ $user = getUserId($database, $id);
 <h4>DANGER ZONE</h4>
 <form action="/app/users/deleteuser.php" method="post">
     <div class="form-group profile-div">
-        <label for="delete-user">Delete account</label>
-        <small class="form-text text-muted">Are you sure you want to delete your account? There's no going back from this.</small>
         <button type="submit" class="btn btn-danger">Delete account</button>
+        <small class="form-text text-muted">Are you sure you want to delete your account? There's no going back from this.</small>
     </div><!-- /form-group -->
 </form>
 </article>

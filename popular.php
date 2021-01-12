@@ -1,14 +1,13 @@
 <?php require __DIR__ . '/app/autoload.php'; ?>
 <?php require __DIR__ . '/sections/header.php'; ?>
-
+<?php alerts(); ?>
 <main>
     <article>
 
-        <h1><?php echo $config['title']; ?></h1>
+        <h1 class="display-2"><?php echo $config['title']; ?></h1>
 
         <?php if (isset($_SESSION['user'])) : ?>
-            <h5>Welcome, <?php echo $_SESSION['user']['username']; ?>!</h5>
-            <p class="success"><?php alert(); ?></p>
+            <h2>Welcome, <?php echo $_SESSION['user']['username']; ?>!</h2>
             <button value="unhide" class="btn btn-dark show-button">Create a new post</button>
 
             <form class="post-form formhidden" action="/app/posts/store.php" method="post">
@@ -59,15 +58,16 @@
                         <p class="card-text"><?= $post['description']; ?></p>
                         <a class="post-link" href="<?= $post['link']; ?>" class="btn btn-dark"><?= sanitizeLink($post['link']); ?></a>
                         <small class="form-text text-muted"><?= $post['date']; ?></small>
-                        <?php $upvotes = getUpvotes($database, $post['id']); ?>
+                        <span>Upvotes: </span>
+                        <span class="vote-number" data-id="<?= $post['id']; ?>"><?= getUpvotes($database, $post['id']) ?></span>
 
                         <?php if (isset($_SESSION['user'])) : ?>
-                            <form action="/app/posts/upvote.php" method="post">
+                            <form class="upvote" action="/app/posts/upvote.php" method="post">
                                 <input type="hidden" name="upvote" id="post-id" value="<?= $post['id']; ?>"></input>
                                 <?php if (!existUpvote($database, $post['id'], $_SESSION['user']['id'])) : ?>
-                                    <button value="<?= $post['id']; ?>" type="submit" name="upvote" class="btn btn-primary btn-sm post-div-button">Upvote<span class="badge bg-secondary"><?= $upvotes; ?></span></button>
+                                    <button style="background-color: grey;" value="submit" type="submit" class="upvote-button" data-id="<?= $post['id']; ?>"></button>
                                 <?php else : ?>
-                                    <button value="<?= $post['id']; ?>" type="submit" name="upvote" class="btn btn-primary btn-sm post-div-button">Remove upvote<span class="badge bg-secondary"><?= $upvotes; ?></span></button>
+                                    <button style="background-color: cornflowerblue;" value="submit" type="submit" class="upvote-button" data-id="<?= $post['id']; ?>"></button>
                                 <?php endif; ?>
                             </form>
 
@@ -81,7 +81,7 @@
                         <?php endif; ?>
 
                         <?php $commentcount = getCommentCount($database, $post['id']); ?>
-                        <a href="/comments.php?id=<?= $post['id'] ?>" class="btn btn-dark btn-sm post-div-button">Comments<span class="badge bg-secondary"><?= $commentcount; ?></span></a>
+                        <a href="/comments.php?id=<?= $post['id'] ?>" class="btn btn-dark btn-sm post-div-button">Comments <span class="badge bg-light text-dark"><?= $commentcount; ?></span></a>
                         <?php if (isset($_SESSION['user'])) : ?>
                             <?php if ($post['user_id'] === $_SESSION['user']['id']) : ?>
                                 <form action="/app/posts/delete.php" method="post">

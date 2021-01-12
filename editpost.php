@@ -1,7 +1,8 @@
 <?php require __DIR__ . '/app/autoload.php'; ?>
 <?php require __DIR__ . '/sections/header.php'; ?>
 
-<?php $id = $_GET['id']; ?>
+<?php $id = $_GET['id'];
+alerts(); ?>
 <main>
     <a href="/posts.php" class="btn btn-dark">Back</a>
     <?php if (isset($_SESSION['posts'])) : ?>

@@ -8,9 +8,9 @@ if (isset($_POST['edit-content'], $_POST['post-id'], $_POST['comment-id'])) {
     $content = filter_var($_POST['edit-content'], FILTER_SANITIZE_STRING);
     $userid = $_SESSION['user']['id'];
     $id = $_POST['comment-id'];
+    $postid = $_POST['post-id'];
 
     editComment($database, $content, $id, $userid);
-    $_SESSION['errors'] = "Your comment was edited.";
+    $_SESSION['success'] = "Your comment was edited.";
 }
-header('Location: ' . $_SERVER['HTTP_REFERER']);
-exit;
+redirect('/comments.php?id=' . $postid);

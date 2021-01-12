@@ -7,6 +7,7 @@ require __DIR__ . '/../autoload.php';
 $id = $_SESSION['user']['id'];
 $user = getUserId($database, $id);
 
+
 //upload avatar
 if (isset($_FILES['avatar'])) {
     $avatar = $_FILES['avatar'];
@@ -18,12 +19,12 @@ if (isset($_FILES['avatar'])) {
 
     if (!in_array($avatar['type'], $accepted)) {
         $_SESSION['errors'] = "The uploaded file type is not allowed.";
-        redirect('/profile.php');
+        redirect('/editprofile.php');
     }
     //error doesn't work
     if ($avatar['size'] > 2097152) {
         $_SESSION['errors'] = "The uploaded file exceeded the filesize limit.";
-        redirect('/profile.php');
+        redirect('/editprofile.php');
     }
 
     if (!$_SESSION['errors']) {
@@ -31,8 +32,8 @@ if (isset($_FILES['avatar'])) {
         move_uploaded_file($avatar['tmp_name'], $destination);
 
         changeProfileImg($database, $id, $avatarname);
-        $_SESSION['errors'] = "The file was successfully uploaded!";
-        redirect('/profile.php');
+        $_SESSION['success'] = "The file was successfully uploaded!";
+        redirect('/editprofile.php');
     }
 }
 
@@ -40,7 +41,6 @@ if (isset($_FILES['avatar'])) {
 if (isset($_POST['update-email'])) {
     $email = filter_var($_POST['update-email'], FILTER_SANITIZE_EMAIL);
 
-    $_SESSION['errors'] = [];
     $_SESSION['update']['update-email'] = $email;
 
     existEmail($database, $email);
@@ -48,12 +48,12 @@ if (isset($_POST['update-email'])) {
 
         $_SESSION['errors'] = "The email is already registered.";
         unset($_SESSION['update']['update-email']);
-        redirect('/profile.php');
+        redirect('/editprofile.php');
     } else {
         changeEmail($database, $id, $email);
-        $_SESSION['errors'] = "Your email was updated.";
+        $_SESSION['success'] = "Your email was updated.";
         unset($_SESSION['update']);
-        redirect('/profile.php');
+        redirect('/editprofile.php');
     }
 }
 
@@ -61,7 +61,6 @@ if (isset($_POST['update-email'])) {
 if (isset($_POST['update-username'])) {
     $username = filter_var($_POST['update-username'], FILTER_SANITIZE_STRING);
 
-    $_SESSION['errors'] = [];
     $_SESSION['update']['update-username'] = $username;
 
     existUsername($database, $username);
@@ -69,12 +68,12 @@ if (isset($_POST['update-username'])) {
 
         $_SESSION['errors'] = "The username is taken.";
         unset($_SESSION['update']['update-username']);
-        redirect('/profile.php');
+        redirect('/editprofile.php');
     } else {
         changeUsername($database, $id, $username);
-        $_SESSION['errors'] = "Your username was updated.";
+        $_SESSION['success'] = "Your username was updated.";
         unset($_SESSION['update']);
-        redirect('/profile.php');
+        redirect('/editprofile.php');
     }
 }
 
@@ -84,11 +83,11 @@ if (isset($_POST['update-bio'])) {
     $_SESSION['update']['update-bio'] = $bio;
     if (strlen($bio) <= 250) {
         changeBio($database, $id, $bio);
-        $_SESSION['errors'] = "Your bio was updated.";
-        redirect('/profile.php');
+        $_SESSION['success'] = "Your bio was updated.";
+        redirect('/editprofile.php');
     } else {
         $_SESSION['errors'] = "Your bio can be a maximum of 250 characters.";
-        redirect('/profile.php');
+        redirect('/editprofile.php');
     }
 }
 
@@ -104,10 +103,10 @@ if (isset($_POST['update-password-1'], $_POST['update-password-2'])) {
         $_SESSION['errors'] = "The passwords do not match.";
         unset($_SESSION['update']['update-password-1'], $_SESSION['update']['update-password-2']);
 
-        redirect('/profile.php');
+        redirect('/editprofile.php');
     }
     changePassword($database, $id, $password);
-    $_SESSION['errors'] = "Your password was updated";
+    $_SESSION['success'] = "Your password was updated";
     unset($_SESSION['update']);
-    redirect('/profile.php');
+    redirect('/editprofile.php');
 }

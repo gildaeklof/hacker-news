@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
 
-if (isset($_POST['upvote'], $_SESSION['user']['id'])) {
+header('Content-Type: application/json');
+
+if (isset($_POST['upvote'])) {
     $postid = filter_var($_POST['upvote'], FILTER_SANITIZE_NUMBER_INT);
     $userid = $_SESSION['user']['id'];
 
@@ -23,15 +25,24 @@ if (isset($_POST['upvote'], $_SESSION['user']['id'])) {
 
     if (!$upvote) {
         upvotePost($database, $postid, $userid);
+        $voteCount = getUpvotes($database, $postid);
+        $status = "upvote";
+        $response = [
+            'voteCount' => $voteCount,
+            'status' => $status
+        ];
+
+        echo json_encode($response);
     } else {
         removeUpvote($database, $postid, $userid);
+        $voteCount = getUpvotes($database, $postid);
+        $status = "unvote";
+        $response = [
+            'voteCount' => $voteCount,
+            'status' => $status
+        ];
+        echo json_encode($response);
     }
+    /*$upvoteInt = getUpvotes($database, $postid);
+    $upvotes = json_encode($upvoteInt);*/
 }
-header('Location: ' . $_SERVER['HTTP_REFERER']);
-exit;
-
-/* Returns the number of upvotes on the current post?:(
-    $upvotes = countUpvotes($database, $postid);
-    $upvotes = json_encode($upvotes);
-    header('Content-Type: application/json');
-    echo $upvotes;*/

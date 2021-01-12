@@ -12,6 +12,6 @@ if (isset($_POST['update-post'])) {
     $description = filter_var($_POST['update-description'], FILTER_SANITIZE_STRING);
 
     updatePost($database, $id, $userid, $title, $link, $description);
-    $_SESSION['errors'] = "Your post was updated.";
-    redirect('/posts.php');
+    $_SESSION['success'] = "Your post was updated.";
+    redirect('/profile.php');
 }
