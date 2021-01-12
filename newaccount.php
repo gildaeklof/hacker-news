@@ -13,7 +13,7 @@
                                                                                             unset($_SESSION['register']['new-email']);
                                                                                         }
                                                                                         ?>" required>
-            <small class="form-text text-muted">Please provide an email address.</small>
+            <small class="form-text">Please provide an email address.</small>
         </div><!-- /form-group -->
 
         <div class="form-group">
@@ -24,7 +24,7 @@
                                                                                                         unset($_SESSION['register']['new-username']);
                                                                                                     }
                                                                                                     ?>" required>
-            <small class="form-text text-muted">Please choose a username.</small>
+            <small class="form-text">Please choose a username.</small>
         </div>
 
         <div class="form-group">
@@ -35,7 +35,7 @@
                                                                                                         unset($_SESSION['register']['new-password-1']);
                                                                                                     }
                                                                                                     ?>" required>
-            <small class="form-text text-muted">Please choose a password.</small>
+            <small class="form-text">Please choose a password.</small>
         </div><!-- /form-group -->
 
         <div class="form-group">
@@ -46,7 +46,7 @@
                                                                                                         unset($_SESSION['register']['new-password-2']);
                                                                                                     }
                                                                                                     ?>" required>
-            <small class="form-text text-muted">Please confirm your password.</small>
+            <small class="form-text">Please confirm your password.</small>
         </div><!-- /form-group -->
 
         <div class="form-group">
@@ -57,7 +57,7 @@
                                                                                         unset($_SESSION['register']['new-bio']);
                                                                                     }
                                                                                     ?>"></textarea>
-            <small class="form-text text-muted">Tell us something about yourself! You can update your profile later.</small>
+            <small class="form-text">Tell us something about yourself! You can update your profile later.</small>
             <button type="submit" class="btn btn-dark post-div-button">Create account</button>
         </div><!-- /form-group -->
     </form>

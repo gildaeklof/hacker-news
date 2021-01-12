@@ -360,8 +360,22 @@ function getCommentCount($database, $id): int
 //delete account
 function deleteUser($database, $id)
 {
-    $id = $_SESSION['user']['id'];
     $query = 'DELETE FROM users WHERE id = :id';
+    $statement = $database->prepare($query);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+
+    $query = 'DELETE FROM comments WHERE user_id = :id';
+    $statement = $database->prepare($query);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+
+    $query = 'DELETE FROM upvotes WHERE user_id = :id';
+    $statement = $database->prepare($query);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+
+    $query = 'DELETE FROM posts WHERE user_id = :id';
     $statement = $database->prepare($query);
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
     $statement->execute();

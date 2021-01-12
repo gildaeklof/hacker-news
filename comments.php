@@ -21,7 +21,6 @@ alerts(); ?>
                         <span>Upvotes: </span>
                         <span class="vote-number" data-id="<?= $post['id']; ?>"><?= getUpvotes($database, $post['id']) ?></span>
 
-
                         <?php if (isset($_SESSION['user'])) : ?>
                             <form class="upvote" action="/app/posts/upvote.php" method="post">
                                 <input type="hidden" name="upvote" id="post-id" value="<?= $post['id']; ?>"></input>

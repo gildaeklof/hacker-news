@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(231, 233, 252);
+  background-color: rgb(231, 239, 252);
 }
 
 input[type="email"]:invalid {
@@ -18,10 +18,14 @@ h1 {
   text-decoration: underline;
 }
 
+.login-link {
+  color: rgb(11, 101, 171);
+}
+
 .upvoted,
 .not-upvoted {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
 }
 
 @media (max-width: 600px) {

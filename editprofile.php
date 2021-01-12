@@ -29,7 +29,7 @@ alerts();
 <form action="/app/users/updateprofile.php" method="post" enctype="multipart/form-data">
     <div class="profile-div">
         <p>Change profile picture</p>
-        <label for="avatar" class="custom-file-upload">Choose a file</label>
+        <label for="avatar" class="custom-file-upload"></label>
         <input type="file" name="avatar" id="avatar" accept=".jpg, .jpeg, .png" required>
     </div>
     <button type="submit" class="btn btn-dark btn-sm post-div-button">Update profile picture</button>
@@ -39,7 +39,7 @@ alerts();
     <div class="form-group profile-div">
         <label for="new-email">Change email</label>
         <input class="form-control" type="email" name="update-email" id="email" value="<?= $user['email']; ?>">
-        <small class="form-text text-muted">Please provide a new email address.</small>
+        <small class="form-text">Please provide a new email address.</small>
         <button type="submit" class="btn btn-dark btn-sm post-div-button">Update email</button>
     </div><!-- /form-group -->
 </form>
@@ -48,7 +48,7 @@ alerts();
     <div class="form-group profile-div">
         <label for="new-username">Change username</label>
         <input class="form-control" type="username" name="update-username" id="username" value="<?= $user['username']; ?>">
-        <small class="form-text text-muted">Please choose a new username.</small>
+        <small class="form-text">Please choose a new username.</small>
         <button type="submit" class="btn btn-dark btn-sm post-div-button">Update username</button>
     </div>
 </form>
@@ -57,7 +57,7 @@ alerts();
     <div class="form-group profile-div">
         <label for="new-bio">Update bio</label>
         <textarea class="form-control" rows="3" name="update-bio" id="bio" value=""><?= $user['bio']; ?></textarea>
-        <small class="form-text text-muted">Tell us something about yourself!</small>
+        <small class="form-text">Tell us something about yourself!</small>
         <button type="submit" class="btn btn-dark btn-sm post-div-button">Update bio</button>
     </div><!-- /form-group -->
 </form>
@@ -66,13 +66,13 @@ alerts();
     <div class="form-group profile-div">
         <label for="new-password-1">Change password</label>
         <input class="form-control" type="password" name="update-password-1" id="password-1">
-        <small class="form-text text-muted">Please choose a new password.</small>
+        <small class="form-text">Please choose a new password.</small>
     </div><!-- /form-group -->
 
     <div class="form-group profile-div">
         <label for="new-password-2">Confirm your new password</label>
         <input class="form-control" type="password" name="update-password-2" id="password-2">
-        <small class="form-text text-muted">Please confirm your new password.</small>
+        <small class="form-text">Please confirm your new password.</small>
         <button type="submit" class="btn btn-dark btn-sm post-div-button">Update password</button>
     </div><!-- /form-group -->
 </form>
@@ -81,7 +81,7 @@ alerts();
 <form action="/app/users/deleteuser.php" method="post">
     <div class="form-group profile-div">
         <button type="submit" class="btn btn-danger">Delete account</button>
-        <small class="form-text text-muted">Are you sure you want to delete your account? There's no going back from this.</small>
+        <small class="form-text">Are you sure you want to delete your account? There's no going back from this.</small>
     </div><!-- /form-group -->
 </form>
 </article>
