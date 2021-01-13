@@ -15,8 +15,8 @@ Big Christmas project. The website is supposed to be a "clone" of hackernews.com
 
 ## Testers
 
-1.
-2.
+1. Rikard Segerkvist
+2. Simon Lindstedt
 
 ## Code review
 
