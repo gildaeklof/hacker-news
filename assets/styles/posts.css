@@ -52,3 +52,7 @@ h2 {
 .back-button {
   margin: 3px;
 }
+
+.comment-h6 {
+  text-decoration: underline;
+}

@@ -17,20 +17,6 @@ img {
   margin-top: 15px;
 }
 
-/*input[type="file"] {
-  display: none;
-}
-
-.custom-file-upload {
-  color: white;
-  background-color: rgb(11, 101, 171);
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  display: inline-block;
-  padding: 6px 12px;
-  cursor: pointer;
-}*/
-
 @media (max-width: 770px) {
   .center-mobile {
     flex-direction: column;

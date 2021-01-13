@@ -19,18 +19,22 @@ const showButton = document.querySelector(".show-button");
 const hideButtons = document.querySelectorAll(".hide-button");
 const form = document.querySelector(".post-form");
 
-showButton.addEventListener("click", () => {
-  if (form.className === "formhidden") {
-    form.className = "formunhidden";
-  } else {
-    form.className = "formunhidden";
-    showButton.value = "unhide";
-  }
-});
+if (showButton) {
+  showButton.addEventListener("click", () => {
+    if (form.classList.contains("formhidden")) {
+      form.className = "formunhidden";
+    } else {
+      form.className = "formunhidden";
+      showButton.value = "unhide";
+    }
+  });
+}
 
-hideButtons.forEach(function (hideButton) {
-  hideButton.addEventListener("click", hideForm);
-});
+if (hideButtons) {
+  hideButtons.forEach(function (hideButton) {
+    hideButton.addEventListener("click", hideForm);
+  });
+}
 
 function hideForm() {
   if (form.className === "formunhidden") {

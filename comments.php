@@ -12,11 +12,11 @@ alerts(); ?>
         <div class="row">
             <div class="col-sm-6">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body shadow-sm bg-white rounded">
                         <h4 class="card-title"><?= $post['title']; ?></h4>
                         <h6 class="card-title-2"><?= $post['author']; ?></h6>
                         <p class="card-text"><?= $post['description']; ?></p>
-                        <a class="post-link" href="<?= $post['link']; ?>" class="btn btn-dark"><?= $post['link']; ?></a>
+                        <a class="post-link" href="<?= $post['link']; ?>" class="btn btn-dark"><?= sanitizeLink($post['link']); ?></a>
                         <small class="form-text text-muted"><?= $post['date']; ?></small>
                         <span>Upvotes: </span>
                         <span class="vote-number" data-id="<?= $post['id']; ?>"><?= getUpvotes($database, $post['id']) ?></span>
@@ -41,7 +41,7 @@ alerts(); ?>
                         <?php endif; ?>
 
                         <div class="comment-section">
-                            <h6>Comments</h6>
+                            <h6 class="comment-h6">Comments:</h6>
                             <?php foreach ($comments as $comment) : ?>
                                 <div class="comment-section">
                                     <small class="form-text text-muted"><?= $comment['author']; ?> commented:</small>
@@ -77,7 +77,7 @@ alerts(); ?>
                             </form>
 
                         <?php else : ?>
-                            <a href="/login.php">Log in to upvote and add comments!</a>
+                            <a class="login-link" href="/login.php">Log in to upvote and add comments!</a>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -86,3 +86,5 @@ alerts(); ?>
 
     <?php endif; ?>
 </main>
+
+<?php require __DIR__ . '/sections/footer.php'; ?>

@@ -252,6 +252,12 @@ function deletePost($database, $id, $userid)
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
     $statement->bindParam(':user_id', $userid, PDO::PARAM_INT);
     $statement->execute();
+
+    $query = 'DELETE FROM upvotes WHERE post_id = :id AND user_id = :user_id';
+    $statement = $database->prepare($query);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->bindParam(':user_id', $userid, PDO::PARAM_INT);
+    $statement->execute();
 }
 
 //upvote functions

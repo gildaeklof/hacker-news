@@ -26,7 +26,7 @@
 
                 <div class="form-group">
                     <label for="new-description">Description</label>
-                    <textarea class="form-control" rows="3" name="new-description" id="description" required></textarea>
+                    <textarea class="form-control" rows="3" name="new-description" id="description"></textarea>
                     <small class="form-text text-muted">Add a description to your post.</small>
                 </div><!-- /form-group -->
                 <button value="hide" type="submit" class="btn btn-dark hide-button">Create post</button>
@@ -52,7 +52,7 @@
         <div class="row most-upvoted-posts">
             <div class="col-sm-6">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body shadow-sm bg-white rounded">
                         <h4 class="card-title"><?= $post['title']; ?></h4>
                         <h6 class="card-title-2"><?= $post['author']; ?></h6>
                         <p class="card-text"><?= $post['description']; ?></p>

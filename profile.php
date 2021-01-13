@@ -52,7 +52,7 @@ alerts();
 
             <div class="form-group">
                 <label for="new-description">Description</label>
-                <textarea class="form-control" rows="3" name="new-description" id="description" required></textarea>
+                <textarea class="form-control" rows="3" name="new-description" id="description"></textarea>
                 <small class="form-text text-muted">Add a description to your post.</small>
             </div><!-- /form-group -->
             <button value="hide" type="submit" class="btn btn-dark hide-button">Create post</button>
@@ -62,12 +62,23 @@ alerts();
             <div class="row">
                 <div class="col-sm-6">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body shadow-sm bg-white rounded">
                             <h4 class="card-title"><?= $post['title']; ?></h4>
                             <h6 class="card-title-2"><?= $post['author']; ?></h6>
                             <p class="card-text"><?= $post['description']; ?></p>
                             <a class="post-link" href="<?= $post['link']; ?>" class="btn btn-dark"><?= sanitizeLink($post['link']); ?></a>
                             <small class="form-text text-muted"><?= $post['date']; ?></small>
+                            <span>Upvotes: </span>
+                            <span class="vote-number" data-id="<?= $post['id']; ?>"><?= getUpvotes($database, $post['id']) ?></span>
+
+                            <form class="upvote" action="/app/posts/upvote.php" method="post">
+                                <input type="hidden" name="upvote" id="post-id" value="<?= $post['id']; ?>"></input>
+                                <?php if (!existUpvote($database, $post['id'], $_SESSION['user']['id'])) : ?>
+                                    <button style="background-color: grey;" value="submit" type="submit" class="upvote-button" data-id="<?= $post['id']; ?>"></button>
+                                <?php else : ?>
+                                    <button style="background-color: cornflowerblue;" value="submit" type="submit" class="upvote-button" data-id="<?= $post['id']; ?>"></button>
+                                <?php endif; ?>
+                            </form>
 
                             <form action="/editpost.php?id=<?= $post['id'] ?>" method="post">
                                 <button type="submit" name="update" class="btn btn-dark btn-sm post-div-button">Edit post</button>
