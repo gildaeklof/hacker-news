@@ -29,15 +29,15 @@ Big Christmas project. The website is supposed to be a "clone" of hackernews.com
 3. Display a warning when deleting post and profile.
    (/index.php line 89 and editprofile.php line 83)
 
-4. Removing the old image from uploads when a user updates their profile-picture or delete their account (might I suggest unlink() ?).
+4. Removing the old image from uploads when a user updates their profile-picture or delete their account (might I suggest `unlink()` ?).
 
 5. Error message doesn't trigger for filesize, likely due to ’$\_FILES’ not being set properly when image is too big for some reason. Try changing your php.ini. Or it might just be my system, who knows :(
    (regarding /app/users/updateprofile.php comment line 24)
 
-6. I would name post update-password/new-password 1 and 2 to password and password-conf for clarity.
+6. I would name `$_POST` update-password/new-password 1 and 2 to password and password-conf for clarity.
    (/app/users/updateprofile.php line 97 & 98)
 
-7. Checking for empty input in places where the input can not be empty with (empty() for instance!). I'm able to effectivly brick my account by entering no input in the change email field and then submitting (in general on all places where a call to a database is made and the data can't be empty).
+7. Checking for empty input in places where the input can not be empty with (`empty()` for instance!). I'm able to effectivly brick my account by entering no input in the change email field and then submitting (in general on all places where a call to a database is made and the data can't be empty).
 
 8. I would probably make functions checking things return bool-values, and making the code act on that information.
 
@@ -45,7 +45,7 @@ Big Christmas project. The website is supposed to be a "clone" of hackernews.com
 
 10. Adding void as return type for all functions not returning any values.
 
-11. No need of returning $\_SESSION from any function since it's a global variable! (At least no reason that I can think of).
+11. No need of returning `$_SESSION` from any function since it's a global variable! (At least no reason that I can think of).
 
 12. When creating a new post I'm able to add a string of any kind into the url field. I would add type="url" to all inputfields where url's are being submitted and checking for valid urls via php.
 
