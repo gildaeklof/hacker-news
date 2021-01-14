@@ -428,3 +428,43 @@ function sessionPassword(): void
         unset($_SESSION['login']['current-password']);
     }
 }
+
+function registerEmail(): void
+{
+    if (isset($_SESSION['register']['new-email'])) {
+        echo $_SESSION['register']['new-email'];
+        unset($_SESSION['register']['new-email']);
+    }
+}
+
+function registerUsername(): void
+{
+    if (isset($_SESSION['register']['new-username'])) {
+        echo $_SESSION['register']['new-username'];
+        unset($_SESSION['register']['new-username']);
+    }
+}
+
+function registerPassword(): void
+{
+    if (isset($_SESSION['register']['new-password-1'])) {
+        echo $_SESSION['register']['new-password-1'];
+        unset($_SESSION['register']['new-password-1']);
+    }
+}
+
+function registerConfirm(): void
+{
+    if (isset($_SESSION['register']['new-password-2'])) {
+        echo $_SESSION['register']['new-password-2'];
+        unset($_SESSION['register']['new-password-2']);
+    }
+}
+
+function registerBio(): void
+{
+    if (isset($_SESSION['register']['new-bio'])) {
+        echo $_SESSION['register']['new-bio'];
+        unset($_SESSION['register']['new-bio']);
+    }
+}
