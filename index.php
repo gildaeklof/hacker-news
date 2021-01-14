@@ -21,7 +21,7 @@
 
                 <div class="form-group">
                     <label for="new-url">Url</label>
-                    <input class="form-control" type="text" name="new-url" id="url" required>
+                    <input class="form-control" type="url" name="new-url" id="url" required>
                     <small class="form-text text-muted">Add a url to your post.</small>
                 </div><!-- /form-group -->
 
