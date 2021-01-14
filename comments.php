@@ -30,9 +30,7 @@ alerts(); ?>
                                     <button style="background-color: cornflowerblue;" value="submit" type="submit" class="upvote-button" data-id="<?= $post['id']; ?>"></button>
                                 <?php endif; ?>
                             </form>
-
                         <?php else : ?>
-
                             <form action="/login.php" method="post">
                                 <input type="hidden" name="upvote" id="post-id" value="<?= $post['id']; ?>"></input>
                                 <button style="background-color: grey;" value="submit" type="submit" class="upvote-button" data-id="<?= $post['id']; ?>"></button>
