@@ -45,7 +45,6 @@ if (isset($_POST['update-email'])) {
 
     existEmail($database, $email);
     if ($_SESSION['emailexist']['email'] === $email) {
-
         $_SESSION['errors'] = "The email is already registered.";
         unset($_SESSION['update']['update-email']);
         redirect('/editprofile.php');
@@ -65,7 +64,6 @@ if (isset($_POST['update-username'])) {
 
     existUsername($database, $username);
     if ($_SESSION['usernameexist']['username'] === $username) {
-
         $_SESSION['errors'] = "The username is taken.";
         unset($_SESSION['update']['update-username']);
         redirect('/editprofile.php');
