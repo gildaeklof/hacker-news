@@ -34,7 +34,9 @@
     </article>
 
 <?php else : ?>
-    <h5><a class="login-link" href="/login.php">Log in</a> for the best experience!</h5>
+    <h5>
+        <a class="login-link" href="/login.php">Log in</a> for the best experience!
+    </h5>
 <?php endif; ?>
 
 <article>
