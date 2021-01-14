@@ -37,7 +37,6 @@ if (isset($_POST['new-email'], $_POST['new-username'], $_POST['new-password-1'],
     if ($password !== $passwordConf) {
         $_SESSION['errors'] = "The passwords do not match.";
         unset($_SESSION['register']['new-password-1'], $_SESSION['register']['new-password-2']);
-
         redirect('/../newaccount.php');
     }
 

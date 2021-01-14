@@ -13,7 +13,7 @@
 
         <div class="form-group">
             <label for="new-username">Username</label>
-            <input class="form-control" type="username" name="new-username" id="username" value="<?= registerEmail(); ?>" required>
+            <input class="form-control" type="username" name="new-username" id="username" value="<?= registerUsername(); ?>" required>
             <small class="form-text">Please choose a username.</small>
         </div>
 

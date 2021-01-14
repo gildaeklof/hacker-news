@@ -8,13 +8,13 @@
     <form action="app/users/login.php" method="post">
         <div class="form-group">
             <label for="current-email">Email</label>
-            <input class="form-control" type="email" name="current-email" id="email" value="<?= sessionEmail(); ?>" required>
+            <input class="form-control" type="email" name="current-email" id="email" value="<?= loginSession(); ?>" required>
             <small class="form-text">Please provide your email address.</small>
         </div><!-- /form-group -->
 
         <div class="form-group">
             <label for="current-password">Password</label>
-            <input class="form-control" type="password" name="current-password" id="password" value="<?= sessionPassword(); ?>" required>
+            <input class="form-control" type="password" name="current-password" id="password" value="<?= loginSession(); ?>" required>
             <small class="form-text">Please provide your password.</small>
             <button type="submit" class="btn btn-dark post-div-button" name="login_user">Login</button>
         </div><!-- /form-group -->

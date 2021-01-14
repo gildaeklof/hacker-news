@@ -412,22 +412,19 @@ function alerts(): void
 }
 
 
-//session email
-function sessionEmail(): void
+//sessions
+function loginSession(): void
 {
     if (isset($_SESSION['login']['current-email'])) {
         echo $_SESSION['login']['current-email'];
         unset($_SESSION['login']['current-email']);
     }
-}
-
-function sessionPassword(): void
-{
     if (isset($_SESSION['login']['current-password'])) {
         echo $_SESSION['login']['current-password'];
         unset($_SESSION['login']['current-password']);
     }
 }
+
 
 function registerEmail(): void
 {
