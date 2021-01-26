@@ -41,10 +41,62 @@ alerts(); ?>
                         <div class="comment-section">
                             <h6 class="comment-h6">Comments:</h6>
                             <?php foreach ($comments as $comment) : ?>
-                                <div class="comment-section">
+
+
+                                <div class="comment-section alert alert-secondary">
                                     <small class="form-text text-muted"><?= $comment['author']; ?> commented:</small>
                                     <p class="comment"><?= $comment['content']; ?> </p>
                                 </div>
+
+                                <!-- Emils changes   Upvote -->
+                            <form action="/app/posts/commentupvote.php" method="post">
+                                <input type="hidden" name="commentid" value="<?= $comment['id']; ?>"></input>
+                                <input type="hidden" name="post_id" value="<?= $post['id']; ?>"></input>
+
+                                <?php
+
+                                $statement = $database->prepare('SELECT * FROM comment_upvote WHERE user_id = :userid AND comment_id = :comment_id');
+                                $statement->bindParam(':userid',  $_SESSION['user']['id'], PDO::PARAM_INT);
+                                $statement->bindParam(':comment_id', $comment['id'], PDO::PARAM_INT);
+                                $statement->execute();
+
+                                $likes = $statement->fetch(PDO::FETCH_ASSOC);
+
+                                if (empty ($likes)) :
+                                ?>
+
+                                <button style="background-color: grey;" name="upvote" value="submit" type="submit">Like comment</button>
+
+                                <?php else:?>
+                                <button style="background-color: green;" name="upvote" value="submit" type="submit">Like comment</button>
+
+                                <?php endif; ?>
+                            </form>
+
+
+                                    <!-- Emils changes with comment reply -->
+                                <?php $commentreply = getCommentReplyByCommentId($database, $comment['id']); ?>
+
+                                <?php foreach ($commentreply as $reply) : ?>
+                                <div class="comment-section">
+                                    <small class="form-text text-muted"><?= $reply['author']; ?> replied:</small>
+                                    <p class="comment"><?= $reply['comment_reply']; ?> </p>
+                                </div>
+                                <?php endforeach; ?>
+
+                                <?php if (isset($_SESSION['user'])) : ?>
+                            <form action="/app/posts/newreply.php" method="post">
+                                <textarea rows="2" class="form-control col-6" name="reply"></textarea>
+                                <input type="hidden" name="comment_id" value="<?= $comment['id'] ?>"></input>
+                                <input type="hidden" name="post_id" value="<?= $post['id'] ?>"></input>
+
+                                <button type="submit" name="new-reply" class="btn btn-dark btn-sm comment-button">Add reply</button>
+                            </form>
+
+                        <?php else : ?>
+                            <a class="login-link" href="/login.php">Log in to upvote and add comments!</a>
+                        <?php endif; ?>
+
 
                                 <?php if (isset($_SESSION['user'])) : ?>
                                     <?php if ($comment['user_id'] === $_SESSION['user']['id']) : ?>
