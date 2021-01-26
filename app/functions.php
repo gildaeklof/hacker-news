@@ -369,7 +369,7 @@ function getCommentReplyByCommentId($database, $commentid): array
 //Emil
 //Add new reply
 
-function addReply($database, $comment_id, $user_id,  $comment_reply, $author)
+function addReply($database, $comment_id, $user_id, $comment_reply, $author)
 {
     $query = 'INSERT INTO comments_reply (user_id, comment_id, comment_reply, author) VALUES (:user_id, :comment_id, :comment_reply, :author)';
     $statement = $database->prepare($query);
