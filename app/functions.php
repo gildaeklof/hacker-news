@@ -349,6 +349,39 @@ function getCommentsByPostId($database, $id): array
     return $comments;
 }
 
+//Emil
+// Get comment replies from comments
+function getCommentReplyByCommentId($database, $commentid): array
+{
+    $query = 'SELECT * FROM comments_reply WHERE comment_id = :comment_id';
+    $statement = $database->prepare($query);
+
+    $statement->bindParam(':comment_id', $commentid, PDO::PARAM_INT);
+    $statement->execute();
+
+    $commentreply = $statement->fetchAll(PDO::FETCH_ASSOC);
+    if ($commentreply === false) {
+        $commentreply = [];
+    }
+    return $commentreply;
+}
+
+//Emil
+//Add new reply
+
+function addReply($database, $comment_id, $user_id,  $comment_reply, $author)
+{
+    $query = 'INSERT INTO comments_reply (user_id, comment_id, comment_reply, author) VALUES (:user_id, :comment_id, :comment_reply, :author)';
+    $statement = $database->prepare($query);
+    $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $statement->bindParam(':comment_id', $comment_id, PDO::PARAM_INT);
+    $statement->bindParam(':comment_reply', $comment_reply, PDO::PARAM_STR);
+    $statement->bindParam(':author', $author, PDO::PARAM_STR);
+    $statement->execute();
+}
+
+
+
 //new comment
 function addComment($database, $userid, $postid, $content, $author)
 {

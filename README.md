@@ -56,3 +56,8 @@ Big Christmas project. The website is supposed to be a "clone" of hackernews.com
 All around fantastic work 🔥
 
 By Simon Lindstedt
+
+## New features by:
+
+- Emil Pettersson
+
