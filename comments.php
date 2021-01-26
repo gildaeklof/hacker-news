@@ -59,9 +59,8 @@ alerts(); ?>
                                     $statement->execute();
 
                                     $likes = $statement->fetch(PDO::FETCH_ASSOC);
-
-                                    if (empty($likes)) :
                                     ?>
+                                    <?php if (empty($likes)) : ?>
 
                                         <button style="background-color: grey;" name="upvote" value="submit" type="submit">Like comment</button>
 
