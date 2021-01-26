@@ -61,3 +61,4 @@ By Simon Lindstedt
 
 - Emil Pettersson
 
+Link to [pull request](https://github.com/gildaeklof/hacker-news/pull/2).
