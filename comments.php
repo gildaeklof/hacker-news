@@ -61,12 +61,9 @@ alerts(); ?>
                                     $likes = $statement->fetch(PDO::FETCH_ASSOC);
                                     ?>
                                     <?php if (empty($likes)) : ?>
-
                                         <button style="background-color: grey;" name="upvote" value="submit" type="submit">Like comment</button>
-
                                     <?php else : ?>
                                         <button style="background-color: green;" name="upvote" value="submit" type="submit">Like comment</button>
-
                                     <?php endif; ?>
                                 </form>
 
